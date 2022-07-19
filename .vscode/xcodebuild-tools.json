@@ -1,0 +1,4 @@
+{
+    "workspace": "${workspaceRoot}/native_twitch.xcodeproj/project.xcworkspace",
+    "scheme": "native_twitch"
+}
