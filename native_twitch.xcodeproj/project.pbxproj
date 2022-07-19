@@ -43,7 +43,6 @@
 		66E4EAFA27D8078200D61B92 /* channel.c in Sources */ = {isa = PBXBuildFile; fileRef = 66E4EAF927D8078200D61B92 /* channel.c */; };
 		66E4EAFD27D807C000D61B92 /* client.c in Sources */ = {isa = PBXBuildFile; fileRef = 66E4EAFC27D807C000D61B92 /* client.c */; };
 		66E4EB0027D8081E00D61B92 /* util.c in Sources */ = {isa = PBXBuildFile; fileRef = 66E4EAFF27D8081E00D61B92 /* util.c */; };
-		66FB3BF928569E7C005DA2BC /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 66FB3BF828569E7C005DA2BC /* SDWebImageSwiftUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -157,7 +156,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66FB3BF928569E7C005DA2BC /* SDWebImageSwiftUI in Frameworks */,
 				6635DE942804926E0042BC65 /* libtwitchchat.a in Frameworks */,
 				66D6E52627E4E89F00449C7F /* AVKit.framework in Frameworks */,
 				6601647B28735DFC003A3C6E /* Kingfisher in Frameworks */,
@@ -381,7 +379,6 @@
 			);
 			name = native_twitch;
 			packageProductDependencies = (
-				66FB3BF828569E7C005DA2BC /* SDWebImageSwiftUI */,
 				6601647A28735DFC003A3C6E /* Kingfisher */,
 			);
 			productName = native_twitch;
@@ -1154,11 +1151,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6601647928735DFC003A3C6E /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
-		};
-		66FB3BF828569E7C005DA2BC /* SDWebImageSwiftUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 66FB3BF728569E7C005DA2BC /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
-			productName = SDWebImageSwiftUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
