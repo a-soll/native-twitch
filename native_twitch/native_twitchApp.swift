@@ -16,7 +16,7 @@ struct native_twitchApp: App {
     init() {
         auth.checkAuth()
     }
-
+    
     var body: some Scene {
         WindowGroup {
             if auth.isAuthed {

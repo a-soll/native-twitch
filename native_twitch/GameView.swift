@@ -85,8 +85,8 @@ struct GameItem: View {
         })
         .onTapGesture {
             var channel = Channel()
-            pop_name(&channel, toCCString(str: self.userName as NSString))
-            pop_login(&channel, toCCString(str: self.userLogin as NSString))
+            pop_name(&channel, self.userName)
+            pop_login(&channel, self.userLogin)
             get_video_token(&client.client, &vid.video, &channel)
             get_stream_url(&client.client, &channel, &vid.video, false)
             
@@ -106,7 +106,7 @@ struct GameView: View {
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
-
+    
     init(game: Game) {
         self.game = game
         category = GameCategory(game: &self.game)

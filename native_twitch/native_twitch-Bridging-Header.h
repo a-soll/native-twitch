@@ -8,5 +8,4 @@
 #import "models/hashmap.h"
 #import "models/videoplayer.h"
 #import "models/sidebar.h"
-#import "models/chat.h"
 #import "models/game.h"

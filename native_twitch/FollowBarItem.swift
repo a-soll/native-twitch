@@ -24,7 +24,7 @@ class ProfileImage: ObservableObject {
             get_url()
         }
     }
-
+    
     func get_url() {
         DispatchQueue.global(qos: .background).async { [self] in
             get_profile_url(&client.client, &channel.chan.pointee)
@@ -65,7 +65,6 @@ struct FollowBarItem: View {
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                     .frame(alignment: .leading)
-//                    .help(Text(channel.game_name))
             }
             HStack {
                 Image(systemName: "circle.fill").foregroundColor(.red)
@@ -78,7 +77,6 @@ struct FollowBarItem: View {
         .frame(minHeight: 45)
         .background(isHover ? .gray.opacity(0.1) : .clear).clipShape(RoundedRectangle(cornerRadius: 10))
         .onHover(perform: { hover in
-            print(String(cString: &channel.chan.pointee.title.0))
             isHover = hover
         })
     }

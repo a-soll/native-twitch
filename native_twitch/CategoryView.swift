@@ -57,8 +57,8 @@ struct CategoryView: View {
                             }
                         })
                         .onTapGesture {
-                            gameSelection = true
                             selectedGame = game
+                            gameSelection = true
                         }
                 }
             }.padding(EdgeInsets(top: 15, leading: 0, bottom: 0, trailing: 0))

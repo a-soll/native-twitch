@@ -22,12 +22,6 @@ func fromCString(str: UnsafePointer<CChar>) -> NSString {
     return s!
 }
 
-// non-mutable
-func toCCString(str: NSString) -> UnsafePointer<CChar> {
-    let str_p0 = UnsafePointer<CChar>(str.utf8String)
-    return str_p0!
-}
-
 class Channels: Identifiable, Hashable {
     let id = UUID()
     var chan: UnsafeMutablePointer<Channel>
@@ -60,7 +54,7 @@ class SwiftClient {
     var accessToken = UserDefaults.standard.string(forKey: "AccessToken")
     var userLogin = UserDefaults.standard.string(forKey: "UserLogin")
     var userId = UserDefaults.standard.string(forKey: "UserId")
-
+    
     init() {
         self.client = Client_init(self.accessToken, userId, userLogin)
     }

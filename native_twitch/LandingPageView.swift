@@ -22,25 +22,26 @@ class GameImage: ObservableObject {
 
 struct LandingPageView: View {
     @State var animate = false
-    @State var gameSelection = false
+    @Binding var gameSelection: Bool
     @Binding var vid_playing: Bool
     //    @State var selectedGame: UnsafeMutablePointer<Game>?
     @State var selectedGame: Game?
     
     var body: some View {
         VStack {
-            Button(action: toggleSelection, label: {
-                Image(systemName: "chevron.left")
-            }).frame(alignment: .topLeading)
             if !gameSelection {
                 CategoryView(gameSelection: $gameSelection, selectedGame: $selectedGame)
             } else {
                 GameView(game: selectedGame!)
             }
-        }
+        }.frame(alignment:.leading)
     }
     
     func toggleSelection() {
-        self.gameSelection = false
+        if gameSelection == true {
+            gameSelection = false
+        } else {
+            gameSelection = true
+        }
     }
 }

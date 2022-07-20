@@ -29,7 +29,7 @@ struct FollowBarView: View {
                     .frame(width: 25, height: 25)
             })
             .buttonStyle(BorderlessButtonStyle())
-                .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
+            .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
         }.frame(alignment: .leading)
         List(store.channels) { channel in
             FollowBarItem(channel: channel)

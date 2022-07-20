@@ -16,7 +16,6 @@ struct WebView: NSViewRepresentable {
     
     func makeNSView(context: Context) -> WKWebView {
         let urlRequest = URLRequest(url: url)
-//        self.webView.configuration.preferences.setValue(true, forKey: "developerExtrasEnabled")
         self.webView.configuration.preferences.javaScriptCanOpenWindowsAutomatically = true
         webView.load(urlRequest)
         return webView
@@ -47,28 +46,26 @@ struct WebView: NSViewRepresentable {
         return WKWebView(frame: .zero, configuration: configuration)
     }
     
-    func getJson() -> String {
-        do {
-            let contentFromFile = try NSString(contentsOfFile: fpath, encoding: String.Encoding.utf8.rawValue)
-            return contentFromFile as String
-        } catch {
-            return ""
-        }
-    }
 //    func getJson() -> String {
-////        return String(contentsOf: fileURL)
-////        return ""
-//        if let filepath = Bundle.main.path(forResource: self.fpath, ofType: "json") {
-//            do {
-//                print(filepath)
-//                return try String(contentsOfFile: filepath)
-//            } catch {
-//                return ""
-//            }
-//        } else {
+//        do {
+//            let contentFromFile = try NSString(contentsOfFile: fpath, encoding: String.Encoding.utf8.rawValue)
+//            return contentFromFile as String
+//        } catch {
 //            return ""
 //        }
 //    }
+
+    func getJson() -> String {
+        if let filepath = Bundle.main.path(forResource: self.fpath, ofType: "json") {
+            do {
+                return try String(contentsOfFile: filepath)
+            } catch {
+                return ""
+            }
+        } else {
+            return ""
+        }
+    }
 
     func getMyJavaScript() -> String {
         if let filepath = Bundle.main.path(forResource: "ffz", ofType: "js") {

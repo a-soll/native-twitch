@@ -34,7 +34,7 @@ struct VideoPlaceholder: View {
 struct PlayerView: View {
     var videoURL : String
     @State private var player : AVPlayer?
-
+    
     var body: some View {
         VideoPlayer(player: player)
             .onAppear() {

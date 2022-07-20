@@ -12,6 +12,7 @@ struct ContentView: View {
     private var store: FollowedChannels
     @StateObject var viewModel = VideoViewModel()
     @State var chan_ind = 0
+    @State var gameSelection = false
     
     init() {
         self.store = FollowedChannels()
@@ -28,7 +29,7 @@ struct ContentView: View {
                 }
             }
             else {
-                LandingPageView(vid_playing: $viewModel.vid_playing)
+                LandingPageView(gameSelection: $gameSelection, vid_playing: $viewModel.vid_playing)
                     .frame(minWidth: 1100, minHeight: 750)
             }
         }
@@ -56,6 +57,7 @@ struct ContentView: View {
     
     private func toggleVidPlaying() {
         viewModel.vid_playing = false
+        gameSelection = false
         viewModel.player.pause()
     }
     
