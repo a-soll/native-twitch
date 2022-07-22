@@ -136,8 +136,6 @@ void parse_links(Video *video, char *data) {
         tmp = tmp + resolution_len;
     }
 
-    video->resolution_list = (Resolution *)malloc(sizeof(Resolution) * count);
-
     int ind = 0;
     tmp = data;
     while (ind < count) {

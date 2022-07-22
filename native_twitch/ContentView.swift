@@ -19,13 +19,13 @@ struct ContentView: View {
     }
     var body: some View {
         NavigationView {
-            FollowBarView(store: store, url: $viewModel.urlString, vid_playing: $viewModel.vid_playing, chan_indx: $chan_ind)
+            FollowBarView(store: store, video: viewModel, chan_indx: $chan_ind)
                 .frame(minWidth: 250, maxWidth: .infinity, alignment: .leading)
                 .padding(EdgeInsets(top: 0, leading: -5, bottom: 0, trailing: 0))
             if viewModel.vid_playing {
                 HStack(spacing:0) {
                     VideoPlayer(player: viewModel.player)
-                    ChatView(channel: store.channels[chan_ind]).frame(minWidth: 350, maxWidth: 350)
+                    ChatView(channel: store.followed[chan_ind]).frame(minWidth: 350, maxWidth: 350)
                 }
             }
             else {

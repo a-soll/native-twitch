@@ -10,22 +10,14 @@ import Foundation
 import AVFoundation
 import WebKit
 
-class CWrapper: ObservableObject {
-    @Published var channel: Channels
-    
-    init(channel: Channels) {
+struct ChatView: View {
+    var channel: SwiftChannel
+
+    init (channel: SwiftChannel) {
         self.channel = channel
     }
-}
 
-struct ChatView: View {
-    @ObservedObject var cWrapper: CWrapper
-    
-    init (channel: Channels) {
-        self.cWrapper = CWrapper(channel: channel)
-    }
-    
     var body: some View {
-        WebView(channel: self.cWrapper.channel.user_name)
+        WebView(channel: String(cString: &self.channel.channel.pointee.user_name.0))
     }
 }

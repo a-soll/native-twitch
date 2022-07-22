@@ -10,6 +10,7 @@ import AVKit
 
 class VideoViewModel : ObservableObject {
     @Published var vid_playing = false
+    var vid = Video()
     @Published var urlString : String? {
         didSet {
             guard let urlString = urlString, let url = URL(string: urlString) else {
@@ -22,6 +23,10 @@ class VideoViewModel : ObservableObject {
         }
     }
     var player = AVPlayer()
+    
+//    deinit {
+//        free(vid.resolution_list)
+//    }
 }
 
 struct VideoPlaceholder: View {

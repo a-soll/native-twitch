@@ -29,7 +29,7 @@ typedef struct Video {
     const char *token_url;
     const char *vod;
     const char *channel;
-    Resolution *resolution_list;
+    Resolution resolution_list[6];
 } Video;
 
 void get_stream_url(Client *client, Channel *channel, Video *player, bool is_vod);

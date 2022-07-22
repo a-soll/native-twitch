@@ -90,7 +90,7 @@ struct GameItem: View {
             get_video_token(&client.client, &vid.video, &channel)
             get_stream_url(&client.client, &channel, &vid.video, false)
             
-            viewModel.urlString = String(cString:&vid.video.resolution_list[0].link.0)
+            viewModel.urlString = String(cString:&vid.video.resolution_list.0.link.0)
             viewModel.vid_playing = true
         }
     }
