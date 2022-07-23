@@ -151,7 +151,7 @@ void get_json_array(Response *response, const char *key) {
 void set_pagination(char *pagination, struct json_object *json) {
     struct json_object *pagination_json;
     json_object_object_get_ex(json, "pagination", &pagination_json);
-    memccpy(pagination, get_key(pagination_json, "cursor"), '\0', 65);
+    strcpy(pagination, get_key(pagination_json, "cursor"));
 }
 
 Paginator init_paginator() {

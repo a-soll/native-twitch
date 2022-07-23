@@ -3,8 +3,10 @@
 // example box art url: https://static-cdn.jtvnw.net/ttv-boxart/1678360288_IGDB-{width}x{height}.jpg
 // placeholder https://static-cdn.jtvnw.net/ttv-static/404_boxart.jpg
 void init_game(Game *game, struct json_obect *json) {
-    memccpy(game->name, get_key(json, "name"), '\0', sizeof(game->name));
-    memccpy(game->id, get_key(json, "id"), '\0', sizeof(game->id));
+    char *name = get_key(json, "name");
+    char *id = get_key(json, "id");
+    strcpy(game->name, name);
+    strcpy(game->id, id);
     const char *box_url = get_key(json, "box_art_url");
     replace_substr(game->box_art_url, box_url, "{width}x{height}", "188x251");
 }
@@ -57,10 +59,9 @@ int get_game_streams(Client *client, Game *game, Channel **channels, Paginator *
         int len = fmt_string(url, "%s&game_id=%s", base_url, game->id);
         url[len] = '\0';
     } else {
-        int len = fmt_string(url, "%s&after=%s&game_id=", base_url, iterator->pagination, game->id);
+        int len = fmt_string(url, "%s&after=%s&game_id=%s", base_url, iterator->pagination, game->id);
         url[len] = '\0';
     }
-
     Response response = curl_request(client, url, curl_GET);
     get_json_array(&response, "data");
     if (*channels == NULL) {
@@ -79,7 +80,6 @@ int get_game_streams(Client *client, Game *game, Channel **channels, Paginator *
     }
     set_pagination(iterator->pagination, response.response);
     *channels = c;
-    // json_object_put(response.response);
     clean_response(&response);
     return ret;
 }

@@ -24,7 +24,7 @@ typedef struct Channel {
     char game_name[50];
     bool is_live;
     char started_at[25];
-    char title[140];
+    char title[500];
     char thumbnail_url[2048]; // 344x194
     char user_login[25];
     char profile_url[2048];

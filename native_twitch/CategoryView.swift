@@ -11,12 +11,12 @@ struct CategoryItem: View {
     var title: String
     var url: URL
     @State var animate = false
-    
+
     init(title: String, url: String) {
         self.title = title
-        self.url = URL(string: url)!
+        self.url = URL(string: url) ?? URL(string: "")!
     }
-    
+
     var body: some View {
         VStack {
             GameImage(url: url).image
@@ -35,29 +35,29 @@ struct CategoryItem: View {
 struct CategoryView: View {
     @ObservedObject var landingPage = LandingPage()
     @Binding var gameSelection: Bool
-    @Binding var selectedGame: Game?
+    @Binding var selectedGame: SwiftGame
 
-    var gridItemLayout = [
-        GridItem(.flexible(), spacing: 0),
-        GridItem(.flexible(), spacing: 0),
-        GridItem(.flexible(), spacing: 0),
-        GridItem(.flexible(), spacing: 0),
-        GridItem(.flexible(), spacing: 0)
-    ]
+    var gridItemLayout: [GridItem] = Array(repeating: .init(.adaptive(minimum: 200)), count: 2)
+
+    init(gameSelection: Binding<Bool>, game: Binding<SwiftGame>) {
+        self._gameSelection = gameSelection
+        self._selectedGame = game
+        landingPage.fetch()
+    }
 
     var body: some View {
         ScrollView {
             LazyVGrid(columns: gridItemLayout, spacing: 30) {
                 ForEach(0..<Int(landingPage.items), id: \.self) { i in
-                    var game = self.landingPage.games![i]
-                    CategoryItem(title: String(cString: &game.name.0), url: String(cString: &game.box_art_url.0))
+                    let game = self.landingPage.games[i]
+                    CategoryItem(title: game.name, url: game.box_art_url)
                         .onAppear(perform: {
                             if i == landingPage.items - 1 {
                                 landingPage.fetch()
                             }
                         })
                         .onTapGesture {
-                            selectedGame = game
+                            selectedGame = SwiftGame(game: game.game)
                             gameSelection = true
                         }
                 }

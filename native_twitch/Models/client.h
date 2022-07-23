@@ -46,7 +46,7 @@ typedef struct Client {
 } Client;
 
 typedef struct Paginator {
-    char pagination[65];
+    char pagination[550];
 } Paginator;
 
 Client Client_init(const char *access_token, const char *user_id, const char *user_login);

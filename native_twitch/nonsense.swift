@@ -55,14 +55,10 @@ class SwiftClient {
 }
 
 class SwiftGame {
-    var game: UnsafeMutablePointer<Game>
+    var game: UnsafeMutablePointer<Game>?
 
-    init(game: UnsafeMutablePointer<Game>) {
+    init(game: UnsafeMutablePointer<Game>?) {
         self.game = game
-    }
-
-    deinit {
-        free(self.game)
     }
 }
 
@@ -71,10 +67,6 @@ class SwiftChannel {
 
     init(channel: UnsafeMutablePointer<Channel>) {
         self.channel = channel
-    }
-
-    deinit {
-        free(self.channel)
     }
 }
 
@@ -99,9 +91,6 @@ final class FollowedChannels: ObservableObject {
         }
     }
     func clean() {
-        for i in 0..<self.count {
-//            free(self.followed[i].channel)
-        }
         self.followed.removeAll()
         self.count = 0
     }
@@ -112,9 +101,5 @@ class SwiftVideo {
 
     init() {
         video = init_video_player()
-    }
-
-    deinit {
-//        free(self.video.resolution_list)
     }
 }
