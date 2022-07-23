@@ -25,6 +25,8 @@
 		6655BAA12852C6E6008DFB12 /* twitch_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6655BAA02852C6E6008DFB12 /* twitch_iosTests.swift */; };
 		6655BAAB2852C6E6008DFB12 /* twitch_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6655BAAA2852C6E6008DFB12 /* twitch_iosUITests.swift */; };
 		6655BAAD2852C6E6008DFB12 /* twitch_iosUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6655BAAC2852C6E6008DFB12 /* twitch_iosUITestsLaunchTests.swift */; };
+		667D96B1288C82BA00AFF69E /* include in Resources */ = {isa = PBXBuildFile; fileRef = 667D96AF288C82BA00AFF69E /* include */; };
+		667D96B2288C82BA00AFF69E /* lib in Resources */ = {isa = PBXBuildFile; fileRef = 667D96B0288C82BA00AFF69E /* lib */; };
 		66BBB2C828860F490090CF60 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BBB2C728860F490090CF60 /* GameView.swift */; };
 		66BBB2CA288617490090CF60 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BBB2C9288617490090CF60 /* CategoryView.swift */; };
 		66BBB2CC288666020090CF60 /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BBB2CB288666020090CF60 /* PreferencesView.swift */; };
@@ -98,6 +100,8 @@
 		6655BAA62852C6E6008DFB12 /* twitch_iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = twitch_iosUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6655BAAA2852C6E6008DFB12 /* twitch_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = twitch_iosUITests.swift; sourceTree = "<group>"; };
 		6655BAAC2852C6E6008DFB12 /* twitch_iosUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = twitch_iosUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		667D96AF288C82BA00AFF69E /* include */ = {isa = PBXFileReference; lastKnownFileType = folder; path = include; sourceTree = "<group>"; };
+		667D96B0288C82BA00AFF69E /* lib */ = {isa = PBXFileReference; lastKnownFileType = folder; path = lib; sourceTree = "<group>"; };
 		66BBB2C728860F490090CF60 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		66BBB2C9288617490090CF60 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		66BBB2CB288666020090CF60 /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
@@ -209,6 +213,15 @@
 			path = twitch_iosUITests;
 			sourceTree = "<group>";
 		};
+		667D96AE288C816800AFF69E /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				667D96AF288C82BA00AFF69E /* include */,
+				667D96B0288C82BA00AFF69E /* lib */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
 		66D6E52427E4E89F00449C7F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -246,6 +259,7 @@
 		66E4EAB427D6F0CC00D61B92 /* native_twitch */ = {
 			isa = PBXGroup;
 			children = (
+				667D96AE288C816800AFF69E /* Modules */,
 				66BBB2C728860F490090CF60 /* GameView.swift */,
 				664466812882706400E976F9 /* LandingPageView.swift */,
 				6612B3F228849B0700600EF0 /* LandingPage.swift */,
@@ -503,8 +517,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				66E4EABD27D6F0CD00D61B92 /* Preview Assets.xcassets in Resources */,
+				667D96B2288C82BA00AFF69E /* lib in Resources */,
 				66E4EABA27D6F0CD00D61B92 /* Assets.xcassets in Resources */,
 				660954B828726A5E00D37CD5 /* ffz.js in Resources */,
+				667D96B1288C82BA00AFF69E /* include in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -894,7 +910,7 @@
 				GCC_LINK_WITH_DYNAMIC_LIBRARIES = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				HEADER_SEARCH_PATHS = /usr/local/include;
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "native-twitch-Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -902,8 +918,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				MARKETING_VERSION = 0.0.4;
+				LIBRARY_SEARCH_PATHS = native_twitch/Modules/lib;
+				MARKETING_VERSION = 0.0.5;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
 					"-lcurl",
@@ -922,6 +938,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "native_twitch/native_twitch-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
+				SYSTEM_HEADER_SEARCH_PATHS = native_twitch/Modules/include;
 			};
 			name = Debug;
 		};
@@ -943,7 +960,7 @@
 				GCC_LINK_WITH_DYNAMIC_LIBRARIES = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				HEADER_SEARCH_PATHS = /usr/local/include;
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "native-twitch-Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -951,8 +968,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
-				MARKETING_VERSION = 0.0.4;
+				LIBRARY_SEARCH_PATHS = native_twitch/Modules/lib;
+				MARKETING_VERSION = 0.0.5;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
 					"-lcurl",
@@ -969,6 +986,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "native_twitch/native_twitch-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
+				SYSTEM_HEADER_SEARCH_PATHS = native_twitch/Modules/include;
 			};
 			name = Release;
 		};
