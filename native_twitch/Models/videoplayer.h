@@ -15,7 +15,7 @@
 typedef struct VideoToken {
     const char *value;
     const char *signature;
-    char *encoded_value;
+    char encoded_value[2048];
 } VideoToken;
 
 typedef struct Resolution {

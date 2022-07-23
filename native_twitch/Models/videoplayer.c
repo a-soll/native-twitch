@@ -66,38 +66,30 @@ void get_video_token(Client *client, Video *player, Channel *channel) {
     if (player->token.value != NULL) {
         token_encode(&player->token);
     }
-    // clear_headers(client);
-    // json_object_put(response.response);
     clean_response(&response);
 }
 
 // convert the token to an html string by replacing " with %22
 void token_encode(VideoToken *token) {
     size_t len = strlen(token->value) + 1;
-    char *encode = (char *)malloc(sizeof(char) * (len * 2));
     int i = 0;
     int j = 0;
-    const char *val = token->value;
 
     while (i < len - 1) {
-        if (val[i] == '"') {
-            encode[j] = '%';
+        if (token->value[i] == '"') {
+            token->encoded_value[j] = '%';
             j++;
-            encode[j] = '2';
+            token->encoded_value[j] = '2';
             j++;
-            encode[j] = '2';
+            token->encoded_value[j] = '2';
             j++;
         } else {
-            encode[j] = val[i];
+            token->encoded_value[j] = token->value[i];
             j++;
         }
         i++;
     }
-    encode[j] = '\0';
-    token->encoded_value = encode;
-    if (encode != NULL) {
-        free(encode);
-    }
+    token->encoded_value[j] = '\0';
 }
 
 void parse_resolution_name(Resolution *resolution, char *string) {

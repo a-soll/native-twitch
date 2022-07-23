@@ -78,7 +78,9 @@ int get_game_streams(Client *client, Game *game, Channel **channels, Paginator *
         c[chan_index] = chan;
         chan_index++;
     }
-    set_pagination(iterator->pagination, response.response);
+    if (response.data_len > 0) {
+        set_pagination(iterator->pagination, response.response);
+    }
     *channels = c;
     clean_response(&response);
     return ret;
