@@ -1,0 +1,6 @@
+[submodule "native_twitch/Modules/helix-c"]
+	path = native_twitch/Modules/helix-c
+	url = https://github.com/a-soll/helix-c.git
+[submodule "submodules/helix-c"]
+	path = submodules/helix-c
+	url = https://github.com/a-soll/helix-c.git
