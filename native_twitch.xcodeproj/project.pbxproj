@@ -44,8 +44,8 @@
 		66C71BCE28BC78050045159B /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 66C71BCD28BC78050045159B /* Sparkle */; };
 		66C71BD028BC78450045159B /* Updater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C71BCF28BC78450045159B /* Updater.swift */; };
 		66C71BD128BC78450045159B /* Updater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C71BCF28BC78450045159B /* Updater.swift */; };
-		66C71BD728BC85FE0045159B /* appcast.xml in Resources */ = {isa = PBXBuildFile; fileRef = 66C71BD628BC85FE0045159B /* appcast.xml */; };
-		66C71BD828BC85FE0045159B /* appcast.xml in Resources */ = {isa = PBXBuildFile; fileRef = 66C71BD628BC85FE0045159B /* appcast.xml */; };
+		66C71BDC28BC98B50045159B /* appcast.xml in Resources */ = {isa = PBXBuildFile; fileRef = 66C71BDB28BC98B50045159B /* appcast.xml */; };
+		66C71BDD28BC98B50045159B /* appcast.xml in Resources */ = {isa = PBXBuildFile; fileRef = 66C71BDB28BC98B50045159B /* appcast.xml */; };
 		66D3E71028BC3F2300FECA92 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 667CE52E28BBBA8B0097D935 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -97,7 +97,7 @@
 		66C71BCA28BC73A90045159B /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.5.sdk/System/Library/Frameworks/AVKit.framework; sourceTree = DEVELOPER_DIR; };
 		66C71BCF28BC78450045159B /* Updater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Updater.swift; sourceTree = "<group>"; };
 		66C71BD528BC7C680045159B /* native-twitch--macOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "native-twitch--macOS--Info.plist"; sourceTree = "<group>"; };
-		66C71BD628BC85FE0045159B /* appcast.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = appcast.xml; sourceTree = "<group>"; };
+		66C71BDB28BC98B50045159B /* appcast.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = appcast.xml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,7 +142,7 @@
 		667CE52628BBBA8A0097D935 = {
 			isa = PBXGroup;
 			children = (
-				66C71BD628BC85FE0045159B /* appcast.xml */,
+				66C71BDB28BC98B50045159B /* appcast.xml */,
 				66C71BD528BC7C680045159B /* native-twitch--macOS--Info.plist */,
 				66B3D17D28BC452200552B46 /* submodules */,
 				667CE52B28BBBA8B0097D935 /* Shared */,
@@ -274,6 +274,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				66C71BDA28BC96210045159B /* PBXTargetDependency */,
 			);
 			name = "native-twitch (macOS)";
 			packageProductDependencies = (
@@ -377,7 +378,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66C71BD828BC85FE0045159B /* appcast.xml in Resources */,
+				66C71BDD28BC98B50045159B /* appcast.xml in Resources */,
 				66BCDFD528BBED6200A482B2 /* ffz.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -388,7 +389,7 @@
 			files = (
 				66D3E71028BC3F2300FECA92 /* Assets.xcassets in Resources */,
 				66B3D17E28BC452200552B46 /* submodules in Resources */,
-				66C71BD728BC85FE0045159B /* appcast.xml in Resources */,
+				66C71BDC28BC98B50045159B /* appcast.xml in Resources */,
 				66BCDFD628BBED6200A482B2 /* ffz.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -477,6 +478,10 @@
 			isa = PBXTargetDependency;
 			target = 667CE53828BBBA8B0097D935 /* native-twitch (macOS) */;
 			targetProxy = 667CE54D28BBBA8B0097D935 /* PBXContainerItemProxy */;
+		};
+		66C71BDA28BC96210045159B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 66C71BD928BC96210045159B /* Sparkle */;
 		};
 /* End PBXTargetDependency section */
 
@@ -681,7 +686,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.6;
 				OTHER_LDFLAGS = (
 					"-L/usr/local/lib",
 					"-I/usr/local/include",
@@ -723,7 +728,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.6;
 				OTHER_LDFLAGS = (
 					"-L/usr/local/lib",
 					"-I/usr/local/include",
@@ -904,6 +909,11 @@
 			productName = Kingfisher;
 		};
 		66C71BCD28BC78050045159B /* Sparkle */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 66C71BCC28BC78050045159B /* XCRemoteSwiftPackageReference "Sparkle" */;
+			productName = Sparkle;
+		};
+		66C71BD928BC96210045159B /* Sparkle */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 66C71BCC28BC78050045159B /* XCRemoteSwiftPackageReference "Sparkle" */;
 			productName = Sparkle;
