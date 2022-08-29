@@ -48,7 +48,7 @@ class Chat: ObservableObject {
 }
 
 class FollowedChannels: ObservableObject {
-    var client = Client_init("05esjg57hep5jpaou8r6pctkikv1n7", "42045317", "swifcheese")
+    var client = SwiftClient()
     var followed = UnsafeMutablePointer<Channel>?.init(nilLiteral: ())
     @Published var count = 0
     
@@ -58,6 +58,6 @@ class FollowedChannels: ObservableObject {
 
     func get_followed() {
         followed?.deallocate()
-        count = Int(get_followed_channels(&client, &followed, Int32(count)))
+        count = Int(get_followed_channels(&client.client, &followed, Int32(count)))
     }
 }

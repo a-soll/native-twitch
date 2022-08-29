@@ -3,12 +3,11 @@
     <channel>
         <title>Native Twitch</title>
         <item>
-            <title>1.0</title>
-            <pubDate>Mon, 29 Aug 2022 01:27:09 -0400</pubDate>
-            <sparkle:version>1</sparkle:version>
-            <sparkle:shortVersionString>1.0</sparkle:shortVersionString>
+            <title>Version 1.5</title>
+            <pubDate>Mon, 29 Aug 2022 02:14:09 -0400</pubDate>
+            <sparkle:version>1.5</sparkle:version>
             <sparkle:minimumSystemVersion>12.3</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/a-soll/native-twitch/releases/latest/download/Native.Twitch.app.zip" length="3758502" type="application/octet-stream"/>
+            <enclosure url="https://github.com/a-soll/native-twitch/releases/latest/download/Native.Twitch.app.zip" length="3758402" type="application/octet-stream"/>
         </item>
     </channel>
 </rss>

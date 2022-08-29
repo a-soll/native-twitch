@@ -4,12 +4,12 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>native_twitch.xcscheme_^#shared#^_</key>
+		<key>Native Twitch (iOS).xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
-		<key>twitch_ios.xcscheme_^#shared#^_</key>
+		<key>Native Twitch (macOS).xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>1</integer>
@@ -17,17 +17,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>66E4EAB127D6F0CC00D61B92</key>
+		<key>667CE53228BBBA8B0097D935</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>66E4EAC227D6F0CD00D61B92</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>66E4EACC27D6F0CD00D61B92</key>
+		<key>667CE53F28BBBA8B0097D935</key>
 		<dict>
 			<key>primary</key>
 			<true/>
