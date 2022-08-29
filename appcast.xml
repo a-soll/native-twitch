@@ -3,9 +3,9 @@
     <channel>
         <title>Native Twitch</title>
         <item>
-            <title>Version 1.6</title>
+            <title>Version 1.7</title>
             <pubDate>Mon, 29 Aug 2022 02:14:09 -0400</pubDate>
-            <sparkle:version>1.6</sparkle:version>
+            <sparkle:version>1.7</sparkle:version>
             <sparkle:minimumSystemVersion>12.3</sparkle:minimumSystemVersion>
             <enclosure url="https://github.com/a-soll/native-twitch/releases/latest/download/Native.Twitch.app.zip" length="3758402" type="application/octet-stream"/>
         </item>
