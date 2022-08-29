@@ -4,7 +4,5 @@
 <dict>
 	<key>SUFeedURL</key>
 	<string>https://a-soll.github.io/native-twitch/appcast.xml</string>
-	<key>SUPublicEDKey</key>
-	<string>wLb0I2Vc4b3T2CH20K678GXgeDk3+U9/XR3Sc+yeF6Q</string>
 </dict>
 </plist>
