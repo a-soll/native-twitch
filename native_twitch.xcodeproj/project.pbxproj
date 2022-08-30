@@ -284,6 +284,7 @@
 				667CE53628BBBA8B0097D935 /* Frameworks */,
 				667CE53728BBBA8B0097D935 /* Resources */,
 				669526CB28BE9E0300BBF68B /* Embed Frameworks */,
+				669526CC28BEA66700BBF68B /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -421,6 +422,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		669526CC28BEA66700BBF68B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 12;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "codesign -f -s \"$CODE_SIGN_IDENTITY\" -o runtime Sparkle.framework/Versions/B/XPCServices/Installer.xpc\ncodesign -f -s \"$CODE_SIGN_IDENTITY\" -o runtime --entitlements Entitlements/Downloader.entitlements Sparkle.framework/Versions/B/XPCServices/Downloader.xpc\n\ncodesign -f -s \"$CODE_SIGN_IDENTITY\" -o runtime Sparkle.framework/Versions/B/Autoupdate\ncodesign -f -s \"$CODE_SIGN_IDENTITY\" -o runtime Sparkle.framework/Versions/B/Updater.app\n\ncodesign -f -s \"$CODE_SIGN_IDENTITY\" -o runtime Sparkle.framework\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		667CE52F28BBBA8B0097D935 /* Sources */ = {
