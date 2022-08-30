@@ -90,7 +90,7 @@ struct GameStreamItem: View {
         VStack {
             ZStack {
                 thumbnail.image.cornerRadius(12)
-                Text("\(viewerCount)) viewers")
+                Text("\(viewerCount) viewers")
                     .foregroundColor(.white)
                     .padding(EdgeInsets(top: 2, leading: 5, bottom: 2, trailing: 5))
                     .background(.black.opacity(0.9))
