@@ -28,6 +28,8 @@
 		667CE58328BBDDB50097D935 /* BrowseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667CE58128BBDDB50097D935 /* BrowseView.swift */; };
 		667CE58528BBDE4B0097D935 /* Browse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667CE58428BBDE4B0097D935 /* Browse.swift */; };
 		667CE58628BBDE4B0097D935 /* Browse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667CE58428BBDE4B0097D935 /* Browse.swift */; };
+		669526C828BE9DE100BBF68B /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 669526C628BE9DE100BBF68B /* Sparkle.framework */; };
+		669526CA28BE9E0300BBF68B /* Sparkle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 669526C628BE9DE100BBF68B /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		66B3D17E28BC452200552B46 /* submodules in Resources */ = {isa = PBXBuildFile; fileRef = 66B3D17D28BC452200552B46 /* submodules */; };
 		66BCDFCC28BBE6DF00A482B2 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BCDFCB28BBE6DF00A482B2 /* ChatView.swift */; };
 		66BCDFCD28BBE6DF00A482B2 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BCDFCB28BBE6DF00A482B2 /* ChatView.swift */; };
@@ -40,8 +42,6 @@
 		66BCDFD728BC07D400A482B2 /* libhelix.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 667CE56F28BBC69C0097D935 /* libhelix.a */; };
 		66BCDFD828BC07D400A482B2 /* libjson-c.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 667CE57128BBC6AB0097D935 /* libjson-c.a */; };
 		66C71BC928BC737E0045159B /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C71BC828BC737E0045159B /* AVKit.framework */; };
-		66C71BCB28BC73A90045159B /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C71BCA28BC73A90045159B /* AVKit.framework */; };
-		66C71BCE28BC78050045159B /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 66C71BCD28BC78050045159B /* Sparkle */; };
 		66C71BD028BC78450045159B /* Updater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C71BCF28BC78450045159B /* Updater.swift */; };
 		66C71BD128BC78450045159B /* Updater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C71BCF28BC78450045159B /* Updater.swift */; };
 		66C71BDC28BC98B50045159B /* appcast.xml in Resources */ = {isa = PBXBuildFile; fileRef = 66C71BDB28BC98B50045159B /* appcast.xml */; };
@@ -66,6 +66,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		669526CB28BE9E0300BBF68B /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				669526CA28BE9E0300BBF68B /* Sparkle.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		667CE52C28BBBA8B0097D935 /* mainApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainApp.swift; sourceTree = "<group>"; };
 		667CE52D28BBBA8B0097D935 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -88,13 +102,13 @@
 		667CE57828BBD7410097D935 /* FollowBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowBarView.swift; sourceTree = "<group>"; };
 		667CE58128BBDDB50097D935 /* BrowseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseView.swift; sourceTree = "<group>"; };
 		667CE58428BBDE4B0097D935 /* Browse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Browse.swift; sourceTree = "<group>"; };
+		669526C628BE9DE100BBF68B /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		66B3D17D28BC452200552B46 /* submodules */ = {isa = PBXFileReference; lastKnownFileType = folder; path = submodules; sourceTree = "<group>"; };
 		66BCDFCB28BBE6DF00A482B2 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		66BCDFCE28BBE73A00A482B2 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		66BCDFD128BBE9EF00A482B2 /* VideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoView.swift; sourceTree = "<group>"; };
 		66BCDFD428BBED6200A482B2 /* ffz.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = ffz.js; sourceTree = "<group>"; };
 		66C71BC828BC737E0045159B /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
-		66C71BCA28BC73A90045159B /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.5.sdk/System/Library/Frameworks/AVKit.framework; sourceTree = DEVELOPER_DIR; };
 		66C71BCF28BC78450045159B /* Updater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Updater.swift; sourceTree = "<group>"; };
 		66C71BD528BC7C680045159B /* native-twitch--macOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "native-twitch--macOS--Info.plist"; sourceTree = "<group>"; };
 		66C71BDB28BC98B50045159B /* appcast.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = appcast.xml; sourceTree = "<group>"; };
@@ -107,8 +121,8 @@
 			files = (
 				66BCDFD728BC07D400A482B2 /* libhelix.a in Frameworks */,
 				66BCDFD828BC07D400A482B2 /* libjson-c.a in Frameworks */,
-				66C71BCB28BC73A90045159B /* AVKit.framework in Frameworks */,
 				667CE57D28BBDA130097D935 /* Kingfisher in Frameworks */,
+				669526C828BE9DE100BBF68B /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,7 +130,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66C71BCE28BC78050045159B /* Sparkle in Frameworks */,
 				66C71BC928BC737E0045159B /* AVKit.framework in Frameworks */,
 				667CE58028BBDAE00097D935 /* Kingfisher in Frameworks */,
 			);
@@ -211,8 +224,8 @@
 		667CE56E28BBC69C0097D935 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				669526C628BE9DE100BBF68B /* Sparkle.framework */,
 				66C71BC828BC737E0045159B /* AVKit.framework */,
-				66C71BCA28BC73A90045159B /* AVKit.framework */,
 				667CE57128BBC6AB0097D935 /* libjson-c.a */,
 				667CE56F28BBC69C0097D935 /* libhelix.a */,
 			);
@@ -270,16 +283,15 @@
 				667CE53528BBBA8B0097D935 /* Sources */,
 				667CE53628BBBA8B0097D935 /* Frameworks */,
 				667CE53728BBBA8B0097D935 /* Resources */,
+				669526CB28BE9E0300BBF68B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				66C71BDA28BC96210045159B /* PBXTargetDependency */,
 			);
 			name = "native-twitch (macOS)";
 			packageProductDependencies = (
 				667CE57F28BBDAE00097D935 /* Kingfisher */,
-				66C71BCD28BC78050045159B /* Sparkle */,
 			);
 			productName = "apple-twitch (macOS)";
 			productReference = 667CE53928BBBA8B0097D935 /* Native Twitch.app */;
@@ -479,10 +491,6 @@
 			target = 667CE53828BBBA8B0097D935 /* native-twitch (macOS) */;
 			targetProxy = 667CE54D28BBBA8B0097D935 /* PBXContainerItemProxy */;
 		};
-		66C71BDA28BC96210045159B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = 66C71BD928BC96210045159B /* Sparkle */;
-		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -608,6 +616,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NRKT859HDW;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -639,6 +651,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NRKT859HDW;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -674,6 +690,10 @@
 				CURRENT_PROJECT_VERSION = 1.8.2;
 				DEVELOPMENT_TEAM = NRKT859HDW;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_OPTIMIZATION_LEVEL = s;
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = /usr/local/include;
@@ -716,6 +736,10 @@
 				CURRENT_PROJECT_VERSION = 1.8.2;
 				DEVELOPMENT_TEAM = NRKT859HDW;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_OPTIMIZATION_LEVEL = s;
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = /usr/local/include;
@@ -907,16 +931,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 667CE57E28BBDAE00097D935 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
-		};
-		66C71BCD28BC78050045159B /* Sparkle */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 66C71BCC28BC78050045159B /* XCRemoteSwiftPackageReference "Sparkle" */;
-			productName = Sparkle;
-		};
-		66C71BD928BC96210045159B /* Sparkle */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 66C71BCC28BC78050045159B /* XCRemoteSwiftPackageReference "Sparkle" */;
-			productName = Sparkle;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
