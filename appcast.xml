@@ -4,12 +4,28 @@
         <title>Native Twitch</title>
         <link>https://a-soll.github.io/native-twitch/appcast.xml</link>
         <item>
+            <title>1.8.3</title>
+            <pubDate>Tue, 30 Aug 2022 18:15:51 -0400</pubDate>
+            <sparkle:version>1.8.3</sparkle:version>
+            <sparkle:shortVersionString>1.8.3</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>12.3</sparkle:minimumSystemVersion>
+            <enclosure url="https://a-soll.github.io/native-twitch/Native%20Twitch.app.zip" length="3758423" type="application/octet-stream" sparkle:edSignature="gbS5KhPSabV3I73LDJ9ACdbgdbD1oGhjqrZOKBBFkeGbrGDXakBpk/AzvtBaaXSYed55qdU4LYpHYvNs7p/wBg=="/>
+        </item>
+        <item>
             <title>1.8.2</title>
-            <pubDate>Mon, 29 Aug 2022 03:25:42 -0400</pubDate>
+            <pubDate>Tue, 30 Aug 2022 17:09:52 -0400</pubDate>
             <sparkle:version>1.8.2</sparkle:version>
             <sparkle:shortVersionString>1.8.2</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>12.3</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/a-soll/native-twitch/releases/latest/download/Native.Twitch.app.zip" length="3961827" type="application/octet-stream" sparkle:edSignature="L9zkyeW95L+wxA9LdOe+HYEuWBRZj4fFFll8QGLoov5Xflbk7KK1aXRz2eHBycrrtD+OT9bFNoGMFTqoR2gCDw=="/>
+            <enclosure url="https://github.com/a-soll/native-twitch/releases/latest/download/Native.Twitch.app.zip" length="3979872" type="application/octet-stream" sparkle:edSignature="Zg4kQDUDWQJvWjIOjXkPuguDfv0qTJyRXlezi1rl8YLG1iKRtSDK7inG/QmsN6Xz4VKtkYxYXBi+RGboNEnWAg=="/>
+        </item>
+        <item>
+            <title>1.7</title>
+            <pubDate>Tue, 30 Aug 2022 17:09:52 -0400</pubDate>
+            <sparkle:version>1.7</sparkle:version>
+            <sparkle:shortVersionString>1.7</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>12.3</sparkle:minimumSystemVersion>
+            <enclosure url="https://a-soll.github.io/native-twitch/Native%20Twitch.app.zip" length="3758333" type="application/octet-stream" sparkle:edSignature="dtD8qq9ueYzDmA/8DpnTRwiLwTz3oFtQ5ucfc/0TGI0qr5fq7ifXofkcjPDyW9ems88VfAvKgSZzuYfSGGCwBA=="/>
         </item>
     </channel>
 </rss>

@@ -28,8 +28,7 @@
 		667CE58328BBDDB50097D935 /* BrowseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667CE58128BBDDB50097D935 /* BrowseView.swift */; };
 		667CE58528BBDE4B0097D935 /* Browse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667CE58428BBDE4B0097D935 /* Browse.swift */; };
 		667CE58628BBDE4B0097D935 /* Browse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667CE58428BBDE4B0097D935 /* Browse.swift */; };
-		669526C828BE9DE100BBF68B /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 669526C628BE9DE100BBF68B /* Sparkle.framework */; };
-		669526CA28BE9E0300BBF68B /* Sparkle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 669526C628BE9DE100BBF68B /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		669526CE28BEBE3F00BBF68B /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 669526CD28BEBE3F00BBF68B /* Sparkle */; };
 		66B3D17E28BC452200552B46 /* submodules in Resources */ = {isa = PBXBuildFile; fileRef = 66B3D17D28BC452200552B46 /* submodules */; };
 		66BCDFCC28BBE6DF00A482B2 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BCDFCB28BBE6DF00A482B2 /* ChatView.swift */; };
 		66BCDFCD28BBE6DF00A482B2 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BCDFCB28BBE6DF00A482B2 /* ChatView.swift */; };
@@ -73,7 +72,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				669526CA28BE9E0300BBF68B /* Sparkle.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -102,7 +100,6 @@
 		667CE57828BBD7410097D935 /* FollowBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowBarView.swift; sourceTree = "<group>"; };
 		667CE58128BBDDB50097D935 /* BrowseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseView.swift; sourceTree = "<group>"; };
 		667CE58428BBDE4B0097D935 /* Browse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Browse.swift; sourceTree = "<group>"; };
-		669526C628BE9DE100BBF68B /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		66B3D17D28BC452200552B46 /* submodules */ = {isa = PBXFileReference; lastKnownFileType = folder; path = submodules; sourceTree = "<group>"; };
 		66BCDFCB28BBE6DF00A482B2 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		66BCDFCE28BBE73A00A482B2 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
@@ -122,7 +119,6 @@
 				66BCDFD728BC07D400A482B2 /* libhelix.a in Frameworks */,
 				66BCDFD828BC07D400A482B2 /* libjson-c.a in Frameworks */,
 				667CE57D28BBDA130097D935 /* Kingfisher in Frameworks */,
-				669526C828BE9DE100BBF68B /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,6 +126,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				669526CE28BEBE3F00BBF68B /* Sparkle in Frameworks */,
 				66C71BC928BC737E0045159B /* AVKit.framework in Frameworks */,
 				667CE58028BBDAE00097D935 /* Kingfisher in Frameworks */,
 			);
@@ -224,7 +221,6 @@
 		667CE56E28BBC69C0097D935 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				669526C628BE9DE100BBF68B /* Sparkle.framework */,
 				66C71BC828BC737E0045159B /* AVKit.framework */,
 				667CE57128BBC6AB0097D935 /* libjson-c.a */,
 				667CE56F28BBC69C0097D935 /* libhelix.a */,
@@ -284,7 +280,6 @@
 				667CE53628BBBA8B0097D935 /* Frameworks */,
 				667CE53728BBBA8B0097D935 /* Resources */,
 				669526CB28BE9E0300BBF68B /* Embed Frameworks */,
-				669526CC28BEA66700BBF68B /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -293,6 +288,7 @@
 			name = "native-twitch (macOS)";
 			packageProductDependencies = (
 				667CE57F28BBDAE00097D935 /* Kingfisher */,
+				669526CD28BEBE3F00BBF68B /* Sparkle */,
 			);
 			productName = "apple-twitch (macOS)";
 			productReference = 667CE53928BBBA8B0097D935 /* Native Twitch.app */;
@@ -422,27 +418,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		669526CC28BEA66700BBF68B /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 12;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "codesign -f -s \"$CODE_SIGN_IDENTITY\" -o runtime Sparkle.framework/Versions/B/XPCServices/Installer.xpc\ncodesign -f -s \"$CODE_SIGN_IDENTITY\" -o runtime --entitlements Entitlements/Downloader.entitlements Sparkle.framework/Versions/B/XPCServices/Downloader.xpc\n\ncodesign -f -s \"$CODE_SIGN_IDENTITY\" -o runtime Sparkle.framework/Versions/B/Autoupdate\ncodesign -f -s \"$CODE_SIGN_IDENTITY\" -o runtime Sparkle.framework/Versions/B/Updater.app\n\ncodesign -f -s \"$CODE_SIGN_IDENTITY\" -o runtime Sparkle.framework\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		667CE52F28BBBA8B0097D935 /* Sources */ = {
@@ -709,7 +684,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1.8.2;
+				CURRENT_PROJECT_VERSION = 1.8.3;
 				DEVELOPMENT_TEAM = NRKT859HDW;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -728,7 +703,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
-				MARKETING_VERSION = 1.8.2;
+				MARKETING_VERSION = 1.8.3;
 				OTHER_LDFLAGS = (
 					"-L/usr/local/lib",
 					"-I/usr/local/include",
@@ -755,7 +730,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1.8.2;
+				CURRENT_PROJECT_VERSION = 1.8.3;
 				DEVELOPMENT_TEAM = NRKT859HDW;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -774,7 +749,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
-				MARKETING_VERSION = 1.8.2;
+				MARKETING_VERSION = 1.8.3;
 				OTHER_LDFLAGS = (
 					"-L/usr/local/lib",
 					"-I/usr/local/include",
@@ -953,6 +928,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 667CE57E28BBDAE00097D935 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		669526CD28BEBE3F00BBF68B /* Sparkle */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 66C71BCC28BC78050045159B /* XCRemoteSwiftPackageReference "Sparkle" */;
+			productName = Sparkle;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
