@@ -9,7 +9,7 @@
             <sparkle:version>1.8.3</sparkle:version>
             <sparkle:shortVersionString>1.8.3</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>12.3</sparkle:minimumSystemVersion>
-            <enclosure url="https://a-soll.github.io/native-twitch/Native%20Twitch.app.zip" length="3758423" type="application/octet-stream" sparkle:edSignature="gbS5KhPSabV3I73LDJ9ACdbgdbD1oGhjqrZOKBBFkeGbrGDXakBpk/AzvtBaaXSYed55qdU4LYpHYvNs7p/wBg=="/>
+            <enclosure url="https://github.com/a-soll/native-twitch/releases/latest/download/Native.Twitch.app.zip" length="3758423" type="application/octet-stream" sparkle:edSignature="gbS5KhPSabV3I73LDJ9ACdbgdbD1oGhjqrZOKBBFkeGbrGDXakBpk/AzvtBaaXSYed55qdU4LYpHYvNs7p/wBg=="/>
         </item>
         <item>
             <title>1.8.2</title>
