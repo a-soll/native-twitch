@@ -280,6 +280,7 @@
 				667CE53628BBBA8B0097D935 /* Frameworks */,
 				667CE53728BBBA8B0097D935 /* Resources */,
 				669526CB28BE9E0300BBF68B /* Embed Frameworks */,
+				66F731F728BEEC4900D8105A /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -418,6 +419,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		66F731F728BEEC4900D8105A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "SPARKLE_PATH=${BUILT_PRODUCTS_DIR}\n\nditto -c -k --sequesterRsrc --keepParent $SPARKLE_PATH/Native\\ Twitch.app $SPARKLE_PATH/Native\\ Twitch.app.zip\n\n$SPARKLE_PATH/../../../SourcePackages/artifacts/sparkle/bin/generate_appcast -o ${PROJECT_DIR}/appcast.xml $SPARKLE_PATH\n\n\nsed -i '' -e \"s/a-soll.github.io\\/native-twitch\\/Native%20Twitch.app.zip/github.com\\/a-soll\\/native-twitch\\/releases\\/latest\\/download\\/Native.Twitch.app.zip/g\" ${PROJECT_DIR}/appcast.xml\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		667CE52F28BBBA8B0097D935 /* Sources */ = {
@@ -684,7 +705,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1.8.4;
+				CURRENT_PROJECT_VERSION = 1.8.5;
 				DEVELOPMENT_TEAM = NRKT859HDW;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -703,7 +724,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
-				MARKETING_VERSION = 1.8.4;
+				MARKETING_VERSION = 1.8.5;
 				OTHER_LDFLAGS = (
 					"-L/usr/local/lib",
 					"-I/usr/local/include",
@@ -730,7 +751,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1.8.4;
+				CURRENT_PROJECT_VERSION = 1.8.5;
 				DEVELOPMENT_TEAM = NRKT859HDW;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -749,7 +770,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
-				MARKETING_VERSION = 1.8.4;
+				MARKETING_VERSION = 1.8.5;
 				OTHER_LDFLAGS = (
 					"-L/usr/local/lib",
 					"-I/usr/local/include",
