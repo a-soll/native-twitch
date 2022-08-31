@@ -436,7 +436,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "SPARKLE_PATH=${BUILT_PRODUCTS_DIR}\n\nditto -c -k --sequesterRsrc --keepParent $SPARKLE_PATH/Native\\ Twitch.app $SPARKLE_PATH/Native\\ Twitch.app.zip\n\n$SPARKLE_PATH/../../../SourcePackages/artifacts/sparkle/bin/generate_appcast -o ${PROJECT_DIR}/appcast.xml $SPARKLE_PATH\n\n\nsed -i '' -e \"s/a-soll.github.io\\/native-twitch\\/Native%20Twitch.app.zip/github.com\\/a-soll\\/native-twitch\\/releases\\/latest\\/download\\/Native.Twitch.app.zip/g\" ${PROJECT_DIR}/appcast.xml\n";
+			shellScript = "SPARKLE_PATH=${BUILT_PRODUCTS_DIR}\n\nditto -c -k --sequesterRsrc --keepParent $SPARKLE_PATH/Native\\ Twitch.app ${PROJECT_DIR}/Native\\ Twitch.app.zip\n\n$SPARKLE_PATH/../../../SourcePackages/artifacts/sparkle/bin/generate_appcast -o ${PROJECT_DIR}/appcast.xml ${PROJECT_DIR}\n\n\nsed -i '' -e \"s/a-soll.github.io\\/native-twitch\\/Native%20Twitch.app.zip/github.com\\/a-soll\\/native-twitch\\/releases\\/latest\\/download\\/Native.Twitch.app.zip/g\" ${PROJECT_DIR}/appcast.xml\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

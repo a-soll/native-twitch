@@ -4,12 +4,12 @@
         <title>Native Twitch</title>
         <link>https://a-soll.github.io/native-twitch/appcast.xml</link>
         <item>
-            <title>1.8.4</title>
+            <title>1.8.5</title>
             <pubDate>Tue, 30 Aug 2022 20:29:52 -0400</pubDate>
-            <sparkle:version>1.8.4</sparkle:version>
-            <sparkle:shortVersionString>1.8.4</sparkle:shortVersionString>
+            <sparkle:version>1.8.5</sparkle:version>
+            <sparkle:shortVersionString>1.8.5</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>12.3</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/a-soll/native-twitch/releases/latest/download/Native.Twitch.app.zip" length="3994174" type="application/octet-stream" sparkle:edSignature="ippfIrADSE6I6hCMYdMVprmWuV3s0WvHV8yNk8LIH7fZJ33b7L96VD+guebjzHr2wxNikwn3d3+scIlU/l4mCg=="/>
+            <enclosure url="https://github.com/a-soll/native-twitch/releases/latest/download/Native.Twitch.app.zip" length="3994162" type="application/octet-stream" sparkle:edSignature="NqyvUMtmJrKAcCMVeYGzghhnnMncWS6imbs2upIfahwdBJBMIEt4CwdPpO+Y5cwDOk50NWmU0yyqjK7uoRMoBA=="/>
         </item>
         <item>
             <title>1.8.3</title>
