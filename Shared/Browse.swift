@@ -23,7 +23,7 @@ class ThumbailImage: ObservableObject {
 }
 
 class GameStreams: ObservableObject {
-    var streams = UnsafeMutablePointer<Channel>?.init(nilLiteral: ())
+    var streams = UnsafeMutablePointer<TwitchStream>?.init(nilLiteral: ())
     @Published var items = 0
     var game: UnsafeMutablePointer<Game>?
     var client = SwiftClient()
@@ -35,7 +35,7 @@ class GameStreams: ObservableObject {
     }
     
     func fetch() {
-        items += Int(get_game_streams(&client.client, game, &streams, &iterator, Int32(items)))
+        items += Int(get_game_streams(&client.client, &streams, game, &iterator, Int32(items)))
     }
 
     deinit {

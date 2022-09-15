@@ -280,7 +280,7 @@
 				667CE53628BBBA8B0097D935 /* Frameworks */,
 				667CE53728BBBA8B0097D935 /* Resources */,
 				669526CB28BE9E0300BBF68B /* Embed Frameworks */,
-				66F731F728BEEC4900D8105A /* ShellScript */,
+				66F731F728BEEC4900D8105A /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -421,22 +421,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		66F731F728BEEC4900D8105A /* ShellScript */ = {
+		66F731F728BEEC4900D8105A /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputFileListPaths = (
 			);
 			inputPaths = (
 			);
+			name = "Run Script";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
-			shellScript = "SPARKLE_PATH=${BUILT_PRODUCTS_DIR}\n\nditto -c -k --sequesterRsrc --keepParent $SPARKLE_PATH/Native\\ Twitch.app ${PROJECT_DIR}/Native\\ Twitch.app.zip\n\n$SPARKLE_PATH/../../../SourcePackages/artifacts/sparkle/bin/generate_appcast -o ${PROJECT_DIR}/appcast.xml ${PROJECT_DIR}\n\n\nsed -i '' -e \"s/a-soll.github.io\\/native-twitch\\/Native%20Twitch.app.zip/github.com\\/a-soll\\/native-twitch\\/releases\\/latest\\/download\\/Native.Twitch.app.zip/g\" ${PROJECT_DIR}/appcast.xml\n";
+			shellScript = "SPARKLE_PATH=${BUILT_PRODUCTS_DIR}\n\nditto -c -k --sequesterRsrc --keepParent $SPARKLE_PATH/Native\\ Twitch.app ${PROJECT_DIR}/Native\\ Twitch.app.zip\n\n$SPARKLE_PATH/../../../SourcePackages/artifacts/sparkle/bin/generate_appcast -o ${PROJECT_DIR}/appcast.xml ${PROJECT_DIR}\n\n\nsed -i '' -e \"s/a-soll.github.io\\/native-twitch\\/Native%20Twitch.app.zip/github.com\\/a-soll\\/native-twitch\\/releases\\/latest\\/download\\/Native.Twitch.app.zip/g\" ${PROJECT_DIR}/appcast.xml\n\ncp  ${PROJECT_DIR}/Native\\ Twitch.app.zip ~/Desktop\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

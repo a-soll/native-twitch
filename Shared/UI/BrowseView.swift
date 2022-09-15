@@ -69,19 +69,19 @@ struct GameStreamItem: View {
     var userName: String
     var title: String
     var url: String
-    var viewerCount: String
+    var viewerCount: Int
     var userLogin: String
-    var stream: UnsafeMutablePointer<Channel>
+    var stream: UnsafeMutablePointer<TwitchStream>
     var client = SwiftClient()
     var thumbnail: ThumbailImage
     @State var animate = false
     
-    init(stream: UnsafeMutablePointer<Channel>) {
+    init(stream: UnsafeMutablePointer<TwitchStream>) {
         self.stream = stream
         self.userName = String(cString: &stream.pointee.user_name.0, encoding: String.Encoding.utf8) ?? "\(String(cString: &stream.pointee.user_name.0, encoding: String.Encoding.unicode)!)"
         self.url = String(cString: &stream.pointee.thumbnail_url.0)
         self.title = String(cString: &stream.pointee.title.0)
-        self.viewerCount = String(cString: &stream.pointee.viewer_count.0)
+        self.viewerCount = Int(stream.pointee.viewer_count)
         self.thumbnail = ThumbailImage(url: URL(string: self.url)!)
         self.userLogin = String(cString: &stream.pointee.user_login.0)
     }

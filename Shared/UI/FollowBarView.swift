@@ -12,26 +12,26 @@ import OSLog
 class ProfileImage: ObservableObject {
     var id = UUID()
     var client = SwiftClient()
-    var channel: UnsafeMutablePointer<Channel>
+    var channel: UnsafeMutablePointer<TwitchStream>
     @Published var image: KFImage
     @Published var view_count = "0"
     @State var fetched = false
     var url: String = ""
     
-    init(channel: UnsafeMutablePointer<Channel>?) {
+    init(channel: UnsafeMutablePointer<TwitchStream>) {
         image = KFImage(URL(string: url)).placeholder { Image(systemName: "circle.fill").resizable().frame(width: 75, height: 75) }
-        self.channel = channel!
+        self.channel = channel
         if !self.fetched {
             get_url()
         }
     }
-    
+
     func get_url() {
         DispatchQueue.global(qos: .background).async { [self] in
-            get_profile_url(&client.client, channel)
-            get_channel_stream(&client.client, channel)
+            var user = User()
+            get_user_by_login(&client.client, &user, &channel.pointee.user_login.0)
             DispatchQueue.main.async { [self] in
-                url = String(cString: &channel.pointee.profile_image_url.0)
+                url = String(cString: &user.profile_image_url.0)
                 image = KFImage(URL(string: url))
                 fetched = true
             }
@@ -46,7 +46,7 @@ struct FollowBarItem: View {
     @ObservedObject var img: ProfileImage
     var index: Int
     
-    init(index: Int, channel: UnsafeMutablePointer<Channel>) {
+    init(index: Int, channel: UnsafeMutablePointer<TwitchStream>) {
         self.index = index
         img = ProfileImage(channel: channel)
     }
@@ -70,7 +70,7 @@ struct FollowBarItem: View {
             HStack {
                 Image(systemName: "circle.fill").foregroundColor(.red)
                     .padding(-5)
-                Text(String(cString: &followed.followed![index].viewer_count.0))
+                self.abbreviate(index: index)
                     .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 5))
             }.frame(alignment: .leading)
         }
@@ -80,6 +80,17 @@ struct FollowBarItem: View {
         .onHover(perform: { hover in
             isHover = hover
         })
+    }
+    
+    func abbreviate(index: Int) -> Text {
+        var count: Array<CChar> = Array(repeating: 32, count: 15)
+        var s = String("\(self.followed.followed![index].viewer_count)")
+        if s.count > 3 {
+            abbreviate_number(&s, &count)
+            return Text(String(cString: count))
+        } else {
+            return Text(s)
+        }
     }
 }
 

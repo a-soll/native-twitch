@@ -7,7 +7,7 @@ struct WebView: NSViewRepresentable {
     var webView: WKWebView
     var channel: String
     
-    init(channel: UnsafeMutablePointer<Channel>) {
+    init(channel: UnsafeMutablePointer<TwitchStream>) {
         self.channel = String(cString: &channel.pointee.user_name.0)
         url = URL(string: "https://www.twitch.tv/popout/\(self.channel)/chat")!
         webView = WKWebView()
