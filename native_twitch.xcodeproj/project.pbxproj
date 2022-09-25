@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		660FF29828E0F339000D61E5 /* post.sh in Resources */ = {isa = PBXBuildFile; fileRef = 660FF29728E0F339000D61E5 /* post.sh */; };
 		667CE54528BBBA8B0097D935 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667CE54428BBBA8B0097D935 /* Tests_iOS.swift */; };
 		667CE54728BBBA8B0097D935 /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667CE54628BBBA8B0097D935 /* Tests_iOSLaunchTests.swift */; };
 		667CE55128BBBA8B0097D935 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667CE55028BBBA8B0097D935 /* Tests_macOS.swift */; };
@@ -79,6 +80,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		660FF29728E0F339000D61E5 /* post.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = post.sh; sourceTree = "<group>"; };
 		667CE52C28BBBA8B0097D935 /* mainApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainApp.swift; sourceTree = "<group>"; };
 		667CE52D28BBBA8B0097D935 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		667CE52E28BBBA8B0097D935 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Shared/Assets.xcassets; sourceTree = SOURCE_ROOT; };
@@ -152,6 +154,7 @@
 		667CE52628BBBA8A0097D935 = {
 			isa = PBXGroup;
 			children = (
+				660FF29728E0F339000D61E5 /* post.sh */,
 				66C71BDB28BC98B50045159B /* appcast.xml */,
 				66C71BD528BC7C680045159B /* native-twitch--macOS--Info.plist */,
 				66B3D17D28BC452200552B46 /* submodules */,
@@ -400,6 +403,7 @@
 				66B3D17E28BC452200552B46 /* submodules in Resources */,
 				66C71BDC28BC98B50045159B /* appcast.xml in Resources */,
 				66BCDFD628BBED6200A482B2 /* ffz.js in Resources */,
+				660FF29828E0F339000D61E5 /* post.sh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -686,15 +690,15 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1.8.7;
-				DEAD_CODE_STRIPPING = YES;
+				CURRENT_PROJECT_VERSION = 1.8.8;
+				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = NRKT859HDW;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = /usr/local/include;
 				INFOPLIST_FILE = "native-twitch--macOS--Info.plist";
@@ -706,7 +710,8 @@
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
-				MARKETING_VERSION = 1.8.7;
+				MARKETING_VERSION = 1.8.8;
+				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = (
 					"-L/usr/local/lib",
 					"-I/usr/local/include",
@@ -717,6 +722,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "adam.native-twitch";
 				PRODUCT_NAME = "Native Twitch";
 				SDKROOT = macosx;
+				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/shared/apple-twitch-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -733,7 +739,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1.8.7;
+				CURRENT_PROJECT_VERSION = 1.8.8;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = NRKT859HDW;
 				ENABLE_PREVIEWS = YES;
@@ -753,7 +759,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
-				MARKETING_VERSION = 1.8.7;
+				MARKETING_VERSION = 1.8.8;
 				OTHER_LDFLAGS = (
 					"-L/usr/local/lib",
 					"-I/usr/local/include",

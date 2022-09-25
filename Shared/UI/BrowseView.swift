@@ -129,7 +129,7 @@ struct GameStreamItem: View {
 
 struct GameStreamView: View {
     var game: UnsafeMutablePointer<Game>?
-    var gameStreams: GameStreams
+    @ObservedObject var gameStreams: GameStreams
     var gridItemLayout: [GridItem] = Array(repeating: .init(.adaptive(minimum: 300)), count: 3)
     
     init(game: UnsafeMutablePointer<Game>) {

@@ -48,16 +48,16 @@ class Chat: ObservableObject {
 }
 
 class FollowedChannels: ObservableObject {
-    var client = SwiftClient()
     var followed = UnsafeMutablePointer<TwitchStream>?.init(nilLiteral: ())
-    @Published var count = 0
+    @Published var count:Int32 = 0
     
     init() {
-        get_followed()
+        self.get_followed()
     }
 
     func get_followed() {
         followed?.deallocate()
-        count = Int(get_followed_streams(&client.client, &followed, Int32(count)))
+        var client = SwiftClient()
+        count = get_followed_streams(&client.client, &followed, 0)
     }
 }

@@ -114,7 +114,7 @@ struct FollowBarView: View {
                 .buttonStyle(BorderlessButtonStyle())
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
             }
-            List(0..<followed.count, id: \.self) { i in
+            List(0..<Int(followed.count), id: \.self) { i in
                 FollowBarItem(index: i, channel: &followed.followed![i])
                     .onTapGesture {
                         selectedStream.set_selection(channel: &followed.followed![i])

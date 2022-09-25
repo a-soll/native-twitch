@@ -18,7 +18,7 @@ class AuthItem: ObservableObject {
         self.isAuthed = validate_token(&client.client)
         if self.isAuthed {
             userLogin = fromCString(str: client.client.user_login) as String
-            userId = fromCString(str: client.client.user_login) as String
+            userId = fromCString(str: client.client.user_id) as String
         }
     }
 }
