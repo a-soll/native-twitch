@@ -27,7 +27,7 @@ class GameStreams: ObservableObject {
     @Published var items = 0
     var game: UnsafeMutablePointer<Game>?
     var client = SwiftClient()
-    var iterator = init_paginator()
+    var iterator = paginator_init()
     
     init(game: UnsafeMutablePointer<Game>) {
         self.game = game
@@ -59,7 +59,7 @@ class GameImage: ObservableObject {
 
 class Browse: ObservableObject {
     var gameList = UnsafeMutablePointer<Game>?.init(nilLiteral: ())
-    var iterator = init_paginator()
+    var iterator = paginator_init()
     @Published var items = 0
     var client = SwiftClient()
     var index = 0

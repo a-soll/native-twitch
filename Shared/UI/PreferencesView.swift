@@ -76,7 +76,6 @@ struct AuthView: View {
                         Text("Invalid token. Please retry.").foregroundColor(.red)
                     }
                 }
-                //                .frame(width: 200, alignment: .center)
             }
         }
     }
@@ -108,7 +107,6 @@ struct GeneralSettingsView: View {
                 AuthView(authItem: self.authItem)
             }
         }
-        //        .frame(minWidth: 350, minHeight: 100)
     }
 }
 

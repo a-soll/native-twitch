@@ -10,10 +10,13 @@ import AVKit
 
 struct ContentView: View {
     @StateObject var vidModel = VideoViewModel()
+    @State var pop = true
     @State var gameSelected = false
+    @State private var searchPos: CGPoint = .zero
+    @State private var searchSize: CGSize = .zero
     @StateObject var chat = Chat()
     @StateObject var selectedStream = StreamSelection()
-
+    
     var body: some View {
         NavigationView {
             FollowBarView()
@@ -29,11 +32,9 @@ struct ContentView: View {
                     .frame(minWidth: 1100, minHeight: 750)
             }
         }
-//        .environmentObject(self.selectedGame)
-        .environmentObject(self.selectedStream)
-//        .environmentObject(self.browse)
-        .environmentObject(self.vidModel)
-        .environmentObject(self.chat)
+//        .environmentObject(self.selectedStream)
+//        .environmentObject(self.vidModel)
+//        .environmentObject(self.chat)
         .toolbar {
             ToolbarItemGroup(placement: .navigation) {
                 Button(action: toggleSidebar, label: {
@@ -44,15 +45,22 @@ struct ContentView: View {
                 })
                 .padding(EdgeInsets(top: 15, leading: -20, bottom: 0, trailing: -20))
                 .frame(width: 50, height: 50)
+                
                 Button(action: toggleVidPlaying, label: {
                     Text("Browse")
                         .font(.title.bold())
-                        .foregroundColor(.white)
+                        .fixedSize()
                 })
                 .buttonStyle(PlainButtonStyle())
-                .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
-            }
-        }
+                .padding(EdgeInsets(top: 15, leading: 0, bottom: 0, trailing: 10))
+            }// ToolbarItemGroup end
+            ToolbarItem(content: {
+                SearchMenu()
+            })
+        }.frame(minWidth: 1100, minHeight: 750)
+            .environmentObject(self.selectedStream)
+            .environmentObject(self.vidModel)
+            .environmentObject(self.chat)
     }// end body
     
     private func toggleVidPlaying() {
@@ -62,10 +70,10 @@ struct ContentView: View {
     }
     
     private func toggleSidebar() {
-        #if os(iOS)
-        #else
+#if os(iOS)
+#else
         NSApp.sendAction(#selector(NSSplitViewController.toggleSidebar(_:)), to: nil, from: nil)
-        #endif
+#endif
         
     }
     

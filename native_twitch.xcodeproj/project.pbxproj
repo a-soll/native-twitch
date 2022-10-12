@@ -46,6 +46,8 @@
 		66C71BD128BC78450045159B /* Updater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C71BCF28BC78450045159B /* Updater.swift */; };
 		66C71BDC28BC98B50045159B /* appcast.xml in Resources */ = {isa = PBXBuildFile; fileRef = 66C71BDB28BC98B50045159B /* appcast.xml */; };
 		66C71BDD28BC98B50045159B /* appcast.xml in Resources */ = {isa = PBXBuildFile; fileRef = 66C71BDB28BC98B50045159B /* appcast.xml */; };
+		66D2C1C928E8FA19003EFDFF /* SearchMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D2C1C828E8FA19003EFDFF /* SearchMenu.swift */; };
+		66D2C1CA28E8FA19003EFDFF /* SearchMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D2C1C828E8FA19003EFDFF /* SearchMenu.swift */; };
 		66D3E71028BC3F2300FECA92 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 667CE52E28BBBA8B0097D935 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -111,6 +113,7 @@
 		66C71BCF28BC78450045159B /* Updater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Updater.swift; sourceTree = "<group>"; };
 		66C71BD528BC7C680045159B /* native-twitch--macOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "native-twitch--macOS--Info.plist"; sourceTree = "<group>"; };
 		66C71BDB28BC98B50045159B /* appcast.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = appcast.xml; sourceTree = "<group>"; };
+		66D2C1C828E8FA19003EFDFF /* SearchMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMenu.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,6 +244,7 @@
 				66BCDFCE28BBE73A00A482B2 /* WebView.swift */,
 				66BCDFD128BBE9EF00A482B2 /* VideoView.swift */,
 				66C71BCF28BC78450045159B /* Updater.swift */,
+				66D2C1C828E8FA19003EFDFF /* SearchMenu.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -438,6 +442,7 @@
 				667CE57528BBD2110097D935 /* State.swift in Sources */,
 				667CE56928BBBAD40097D935 /* PreferencesView.swift in Sources */,
 				667CE56C28BBBAFF0097D935 /* Client.swift in Sources */,
+				66D2C1CA28E8FA19003EFDFF /* SearchMenu.swift in Sources */,
 				667CE55428BBBA8B0097D935 /* mainApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -457,6 +462,7 @@
 				667CE57628BBD2110097D935 /* State.swift in Sources */,
 				667CE56A28BBBAD40097D935 /* PreferencesView.swift in Sources */,
 				667CE56D28BBBAFF0097D935 /* Client.swift in Sources */,
+				66D2C1C928E8FA19003EFDFF /* SearchMenu.swift in Sources */,
 				667CE55528BBBA8B0097D935 /* mainApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -690,7 +696,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1.8.8;
+				CURRENT_PROJECT_VERSION = 1.9.0;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = NRKT859HDW;
 				ENABLE_PREVIEWS = YES;
@@ -710,7 +716,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
-				MARKETING_VERSION = 1.8.8;
+				MARKETING_VERSION = 1.9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = (
 					"-L/usr/local/lib",
@@ -739,7 +745,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1.8.8;
+				CURRENT_PROJECT_VERSION = 1.9.0;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = NRKT859HDW;
 				ENABLE_PREVIEWS = YES;
@@ -759,7 +765,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
-				MARKETING_VERSION = 1.8.8;
+				MARKETING_VERSION = 1.9.0;
 				OTHER_LDFLAGS = (
 					"-L/usr/local/lib",
 					"-I/usr/local/include",

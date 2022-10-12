@@ -37,13 +37,10 @@ class StreamSelection: ObservableObject {
 }
 
 class Chat: ObservableObject {
-    @Published var channel: UnsafeMutablePointer<TwitchStream>?
+    @Published var channel = ""
     
     func set_channel(channel: UnsafeMutablePointer<TwitchStream>) {
-        if self.channel?.pointee == nil {
-            self.channel?.deallocate()
-        }
-        self.channel = channel
+        self.channel = String(cString: &channel.pointee.user_login.0)
     }
 }
 
@@ -57,7 +54,7 @@ class FollowedChannels: ObservableObject {
 
     func get_followed() {
         followed?.deallocate()
-        var client = SwiftClient()
+        let client = SwiftClient()
         count = get_followed_streams(&client.client, &followed, 0)
     }
 }

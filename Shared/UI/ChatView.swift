@@ -11,6 +11,6 @@ struct ChatView: View {
     @EnvironmentObject var chat: Chat
 
     var body: some View {
-        WebView(channel: chat.channel!)
+        WebView(channel: chat.channel)
     }
 }

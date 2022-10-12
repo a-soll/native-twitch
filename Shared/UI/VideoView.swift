@@ -11,6 +11,8 @@ import AVKit
 class VideoViewModel : ObservableObject {
     @Published var vid_playing = false
     var vid = Video()
+    var client = SwiftClient()
+    
     @Published var urlString : String? {
         didSet {
             guard let urlString = urlString, let url = URL(string: urlString) else {

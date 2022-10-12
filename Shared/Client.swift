@@ -11,7 +11,7 @@ class SwiftClient {
     }
 
     deinit {
-        clear_headers(&self.client)
+        client_clear_headers(&self.client)
     }
 }
 
