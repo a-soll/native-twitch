@@ -23,18 +23,15 @@ struct ContentView: View {
                 .frame(minWidth: 250, maxWidth: .infinity)
             if vidModel.vid_playing {
                 HStack(spacing:0) {
-                    VideoPlayer(player: vidModel.player)
+                    PlayerView(player: NSVideoView(url: vidModel.url!), stream: selectedStream.channel!)
                     ChatView().frame(minWidth: 350, maxWidth: 350)
-                }
+                }.frame(minWidth: 700)
             }
             else {
                 BrowseView(gameSelected: $gameSelected)
-                    .frame(minWidth: 1100, minHeight: 750)
+                    .frame(minWidth: 600, minHeight: 750)
             }
         }
-//        .environmentObject(self.selectedStream)
-//        .environmentObject(self.vidModel)
-//        .environmentObject(self.chat)
         .toolbar {
             ToolbarItemGroup(placement: .navigation) {
                 Button(action: toggleSidebar, label: {
@@ -43,7 +40,7 @@ struct ContentView: View {
                         .scaledToFit()
                         .frame(width: 25, height: 25)
                 })
-                .padding(EdgeInsets(top: 15, leading: -20, bottom: 0, trailing: -20))
+                .padding(EdgeInsets(top: 0, leading: -20, bottom: 0, trailing: -20))
                 .frame(width: 50, height: 50)
                 
                 Button(action: toggleVidPlaying, label: {
@@ -52,7 +49,7 @@ struct ContentView: View {
                         .fixedSize()
                 })
                 .buttonStyle(PlainButtonStyle())
-                .padding(EdgeInsets(top: 15, leading: 0, bottom: 0, trailing: 10))
+                .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
             }// ToolbarItemGroup end
             ToolbarItem(content: {
                 SearchMenu()
@@ -66,7 +63,6 @@ struct ContentView: View {
     private func toggleVidPlaying() {
         self.gameSelected = false
         self.vidModel.vid_playing = false
-        vidModel.player.pause()
     }
     
     private func toggleSidebar() {

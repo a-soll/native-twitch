@@ -14,13 +14,3 @@ class SwiftClient {
         client_clear_headers(&self.client)
     }
 }
-
-//func start_client() -> Client {
-//    let accessToken = UserDefaults.standard.string(forKey: "AccessToken")
-//    let userLogin = UserDefaults.standard.string(forKey: "UserLogin")
-//    let userId = UserDefaults.standard.string(forKey: "UserId")
-//
-//    var client = Client()
-//    Client_init(&client, accessToken, "gp762nuuoqcoxypju8c569th9wz7q5", userId, userLogin)
-//    return client
-//}

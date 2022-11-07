@@ -15,4 +15,4 @@ Native Twitch is a native MacOS app for Twitch with FFZ support. Still in very e
 <img width="1723" alt="Screen Shot 2022-07-20 at 12 14 45 PM" src="https://user-images.githubusercontent.com/50970854/180033343-3dcd633f-63b9-4789-93f4-d02ce4b82675.png">
 
 #### Theater mode
-<img width="1723" alt="Screen Shot 2022-07-20 at 12 14 52 PM" src="https://user-images.githubusercontent.com/50970854/180033270-03807df1-3b51-4850-ade5-21fc99fb194f.png">
+<img width="1723" alt="Screen Shot 2022-07-20 at 12 14 52 PM" src="https://user-images.githubusercontent.com/50970854/200234129-72baec54-696f-4fd8-8001-41efc64b9290.png">

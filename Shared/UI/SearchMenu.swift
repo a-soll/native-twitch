@@ -18,7 +18,7 @@ class SearchedProfileImage: ObservableObject {
     var url: String = ""
     
     init(channel: UnsafeMutablePointer<SearchedChannel>) {
-        image = KFImage(URL(string: url)).placeholder { Image(systemName: "circle.fill").resizable().frame(width: 75, height: 75) }
+        image = KFImage(URL(string: url)).placeholder { Image(systemName: "circle.fill").resizable().frame(width: 30, height: 30) }
         self.channel = channel
         if !self.fetched {
             get_url()
@@ -75,7 +75,7 @@ class Search: ObservableObject {
     }
     
     func runSearch(keyword: String) {
-        count += search_channels(&client.client, keyword, &chanResults, &paginator, count, false)
+        count += search_channels(&client.client, keyword, &chanResults, &paginator, count, true)
     }
     
     func clearSearch() {
@@ -134,7 +134,7 @@ struct PopView: View {
                     vidModel.vid = init_video_player()
                     get_video_token(&client.client, &vidModel.vid, selectedStream.channel)
                     get_stream_url(&client.client, selectedStream.channel, &vidModel.vid, false)
-                    vidModel.urlString = String(cString: &vidModel.vid.resolution_list.0.link.0)
+                    vidModel.url = URL(string: String(cString: &vidModel.vid.resolution_list.0.link.0))!
                     chat.set_channel(channel: &stream)
                     vidModel.vid_playing = true
                     showPopup = false
