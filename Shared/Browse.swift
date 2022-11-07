@@ -34,6 +34,10 @@ class GameStreams: ObservableObject {
         self.fetch()
     }
     
+    deinit {
+        streams?.deallocate()
+    }
+    
     func fetch() {
         let new = Int(get_game_streams(&client.client, &streams, game, &iterator, Int32(items)))
         self.items += Int(new)

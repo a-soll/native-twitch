@@ -34,21 +34,18 @@ class GameSelection: ObservableObject {
 }
 
 class StreamItem: ObservableObject {
-    @Published var stream: UnsafeMutablePointer<TwitchStream>
-    
-    init(stream: UnsafeMutablePointer<TwitchStream>) {
+    @Published var stream: TwitchStream
+
+    init(stream: TwitchStream) {
         self.stream = stream
     }
 }
 
 class StreamSelection: ObservableObject {
-    @Published var channel = UnsafeMutablePointer<TwitchStream>?.init(nilLiteral: ())
+    @Published var stream = TwitchStream()
 
-    func set_selection(channel: UnsafeMutablePointer<TwitchStream>) {
-        if self.channel?.pointee == nil {
-            self.channel?.deallocate()
-        }
-        self.channel = channel
+    func set_selection(stream: TwitchStream) {
+        self.stream = stream
     }
 }
 

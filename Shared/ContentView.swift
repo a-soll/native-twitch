@@ -16,20 +16,20 @@ struct ContentView: View {
     @State private var searchSize: CGSize = .zero
     @StateObject var chat = Chat()
     @StateObject var selectedStream = StreamSelection()
-    
+
     var body: some View {
         NavigationView {
             FollowBarView()
-                .frame(minWidth: 250, maxWidth: .infinity)
+                .frame(minWidth: 250, maxWidth: 550)
             if vidModel.vid_playing {
                 HStack(spacing:0) {
-                    PlayerView(player: NSVideoView(url: vidModel.url!), stream: selectedStream.channel!)
+                    PlayerView(img: ProfImage(channel: selectedStream.stream), stream: StreamItem(stream: selectedStream.stream))
                     ChatView().frame(minWidth: 350, maxWidth: 350)
-                }.frame(minWidth: 700)
+                }
             }
             else {
                 BrowseView(gameSelected: $gameSelected)
-                    .frame(minWidth: 600, minHeight: 750)
+                    .frame(minWidth: 600)
             }
         }
         .toolbar {
@@ -42,7 +42,7 @@ struct ContentView: View {
                 })
                 .padding(EdgeInsets(top: 0, leading: -20, bottom: 0, trailing: -20))
                 .frame(width: 50, height: 50)
-                
+
                 Button(action: toggleVidPlaying, label: {
                     Text("Browse")
                         .font(.title.bold())
@@ -54,25 +54,25 @@ struct ContentView: View {
             ToolbarItem(content: {
                 SearchMenu()
             })
-        }.frame(minWidth: 1100, minHeight: 750)
+        }
             .environmentObject(self.selectedStream)
             .environmentObject(self.vidModel)
             .environmentObject(self.chat)
     }// end body
-    
+
     private func toggleVidPlaying() {
         self.gameSelected = false
         self.vidModel.vid_playing = false
     }
-    
+
     private func toggleSidebar() {
 #if os(iOS)
 #else
         NSApp.sendAction(#selector(NSSplitViewController.toggleSidebar(_:)), to: nil, from: nil)
 #endif
-        
+
     }
-    
+
 }//end struct
 
 struct ContentView_Previews: PreviewProvider {

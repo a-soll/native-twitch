@@ -22,7 +22,7 @@ struct BrowseItem: View {
             GameImage(url: url).image.cornerRadius(12)
             Text(title)
         }
-        .padding(EdgeInsets(top: 0, leading: 1, bottom: 0, trailing: 1))
+        .padding(EdgeInsets(top: 17, leading: 0, bottom: 0, trailing: 0))
         .scaleEffect(x: animate ? 1.1 : 1, y: animate ? 1.1 : 1)
         .animation(.easeIn(duration: 0.1), value: animate)
         .onHover(perform: { hover in
@@ -71,19 +71,19 @@ struct GameStreamItem: View {
     var url: String
     var viewerCount: Int
     var userLogin: String
-    var stream: UnsafeMutablePointer<TwitchStream>
+    var stream: TwitchStream
     var client = SwiftClient()
     var thumbnail: ThumbailImage
     @State var animate = false
     
-    init(stream: UnsafeMutablePointer<TwitchStream>) {
+    init(stream: inout TwitchStream) {
         self.stream = stream
-        self.userName = String(cString: &stream.pointee.user_name.0, encoding: String.Encoding.utf8) ?? "\(String(cString: &stream.pointee.user_name.0, encoding: String.Encoding.unicode)!)"
-        self.url = String(cString: &stream.pointee.thumbnail_url.0)
-        self.title = String(cString: &stream.pointee.title.0)
-        self.viewerCount = Int(stream.pointee.viewer_count)
+        self.userName = String(cString: &stream.user_name.0, encoding: String.Encoding.utf8) ?? "\(String(cString: &stream.user_name.0, encoding: String.Encoding.unicode)!)"
+        self.url = String(cString: &stream.thumbnail_url.0)
+        self.title = String(cString: &stream.title.0)
+        self.viewerCount = Int(stream.viewer_count)
         self.thumbnail = ThumbailImage(url: URL(string: self.url)!)
-        self.userLogin = String(cString: &stream.pointee.user_login.0)
+        self.userLogin = String(cString: &stream.user_login.0)
     }
     
     var body: some View {
@@ -116,12 +116,12 @@ struct GameStreamItem: View {
             animate = hover
         })
         .onTapGesture {
-            selectedStream.set_selection(channel: self.stream)
+            selectedStream.set_selection(stream: self.stream)
             video.vid = init_video_player()
-            get_video_token(&client.client, &video.vid, selectedStream.channel)
-            get_stream_url(&client.client, selectedStream.channel, &video.vid, false)
+            get_video_token(&client.client, &video.vid, &selectedStream.stream)
+            get_stream_url(&client.client, &selectedStream.stream, &video.vid, false)
             video.url = URL(string: String(cString:&video.vid.resolution_list.0.link.0))!
-            chat.set_channel(channel: selectedStream.channel!)
+            chat.set_channel(channel: &selectedStream.stream)
             video.vid_playing = true
         }
     }
