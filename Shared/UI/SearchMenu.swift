@@ -130,10 +130,10 @@ struct PopView: View {
                 .onTapGesture {
                     var stream = TwitchStream()
                     get_stream_by_user_login(&client.client, &stream, &search.chanResults![i].broadcaster_login)
-                    selectedStream.set_selection(channel: &stream)
+                    selectedStream.set_selection(stream: stream)
                     vidModel.vid = init_video_player()
-                    get_video_token(&client.client, &vidModel.vid, selectedStream.channel)
-                    get_stream_url(&client.client, selectedStream.channel, &vidModel.vid, false)
+                    get_video_token(&client.client, &vidModel.vid, &selectedStream.stream)
+                    get_stream_url(&client.client, &selectedStream.stream, &vidModel.vid, false)
                     vidModel.url = URL(string: String(cString: &vidModel.vid.resolution_list.0.link.0))!
                     chat.set_channel(channel: &stream)
                     vidModel.vid_playing = true
