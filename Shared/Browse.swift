@@ -38,12 +38,6 @@ class GameStreams: ObservableObject {
         let new = Int(get_game_streams(&client.client, &streams, game, &iterator, Int32(items)))
         self.items += Int(new)
     }
-
-    deinit {
-        if streams?.pointee != nil {
-            streams?.deallocate()
-        }
-    }
 }
 
 class GameImage: ObservableObject {

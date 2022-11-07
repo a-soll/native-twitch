@@ -35,8 +35,8 @@
 		66BCDFCD28BBE6DF00A482B2 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BCDFCB28BBE6DF00A482B2 /* ChatView.swift */; };
 		66BCDFCF28BBE73A00A482B2 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BCDFCE28BBE73A00A482B2 /* WebView.swift */; };
 		66BCDFD028BBE73A00A482B2 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BCDFCE28BBE73A00A482B2 /* WebView.swift */; };
-		66BCDFD228BBE9EF00A482B2 /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BCDFD128BBE9EF00A482B2 /* VideoView.swift */; };
-		66BCDFD328BBE9EF00A482B2 /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BCDFD128BBE9EF00A482B2 /* VideoView.swift */; };
+		66BCDFD228BBE9EF00A482B2 /* NSVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BCDFD128BBE9EF00A482B2 /* NSVideoView.swift */; };
+		66BCDFD328BBE9EF00A482B2 /* NSVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BCDFD128BBE9EF00A482B2 /* NSVideoView.swift */; };
 		66BCDFD528BBED6200A482B2 /* ffz.js in Resources */ = {isa = PBXBuildFile; fileRef = 66BCDFD428BBED6200A482B2 /* ffz.js */; };
 		66BCDFD628BBED6200A482B2 /* ffz.js in Resources */ = {isa = PBXBuildFile; fileRef = 66BCDFD428BBED6200A482B2 /* ffz.js */; };
 		66BCDFD728BC07D400A482B2 /* libhelix.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 667CE56F28BBC69C0097D935 /* libhelix.a */; };
@@ -107,7 +107,7 @@
 		66B3D17D28BC452200552B46 /* submodules */ = {isa = PBXFileReference; lastKnownFileType = folder; path = submodules; sourceTree = "<group>"; };
 		66BCDFCB28BBE6DF00A482B2 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		66BCDFCE28BBE73A00A482B2 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
-		66BCDFD128BBE9EF00A482B2 /* VideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoView.swift; sourceTree = "<group>"; };
+		66BCDFD128BBE9EF00A482B2 /* NSVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSVideoView.swift; sourceTree = "<group>"; };
 		66BCDFD428BBED6200A482B2 /* ffz.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = ffz.js; sourceTree = "<group>"; };
 		66C71BC828BC737E0045159B /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 		66C71BCF28BC78450045159B /* Updater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Updater.swift; sourceTree = "<group>"; };
@@ -242,7 +242,7 @@
 				667CE58128BBDDB50097D935 /* BrowseView.swift */,
 				66BCDFCB28BBE6DF00A482B2 /* ChatView.swift */,
 				66BCDFCE28BBE73A00A482B2 /* WebView.swift */,
-				66BCDFD128BBE9EF00A482B2 /* VideoView.swift */,
+				66BCDFD128BBE9EF00A482B2 /* NSVideoView.swift */,
 				66C71BCF28BC78450045159B /* Updater.swift */,
 				66D2C1C828E8FA19003EFDFF /* SearchMenu.swift */,
 			);
@@ -434,7 +434,7 @@
 			files = (
 				667CE55628BBBA8B0097D935 /* ContentView.swift in Sources */,
 				66BCDFCF28BBE73A00A482B2 /* WebView.swift in Sources */,
-				66BCDFD228BBE9EF00A482B2 /* VideoView.swift in Sources */,
+				66BCDFD228BBE9EF00A482B2 /* NSVideoView.swift in Sources */,
 				667CE58528BBDE4B0097D935 /* Browse.swift in Sources */,
 				667CE57928BBD7410097D935 /* FollowBarView.swift in Sources */,
 				66BCDFCC28BBE6DF00A482B2 /* ChatView.swift in Sources */,
@@ -453,7 +453,7 @@
 			files = (
 				667CE55728BBBA8B0097D935 /* ContentView.swift in Sources */,
 				66BCDFD028BBE73A00A482B2 /* WebView.swift in Sources */,
-				66BCDFD328BBE9EF00A482B2 /* VideoView.swift in Sources */,
+				66BCDFD328BBE9EF00A482B2 /* NSVideoView.swift in Sources */,
 				667CE58628BBDE4B0097D935 /* Browse.swift in Sources */,
 				667CE57A28BBD7410097D935 /* FollowBarView.swift in Sources */,
 				66C71BD028BC78450045159B /* Updater.swift in Sources */,

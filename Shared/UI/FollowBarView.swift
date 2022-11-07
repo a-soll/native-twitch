@@ -17,7 +17,7 @@ class ProfileImage: ObservableObject {
     @Published var view_count = "0"
     @State var fetched = false
     var url: String = ""
-    
+
     init(channel: UnsafeMutablePointer<TwitchStream>) {
         image = KFImage(URL(string: url)).placeholder { Image(systemName: "circle.fill").resizable().frame(width: 75, height: 75) }
         self.channel = channel
@@ -44,11 +44,13 @@ struct FollowBarItem: View {
     @EnvironmentObject var selectedStream: StreamSelection
     @State private var isHover = false
     @ObservedObject var img: ProfileImage
+    var stream: StreamItem
     var index: Int
-    
+
     init(index: Int, channel: UnsafeMutablePointer<TwitchStream>) {
         self.index = index
         img = ProfileImage(channel: channel)
+        self.stream = StreamItem(stream: channel)
     }
 
     var body: some View {
@@ -74,14 +76,16 @@ struct FollowBarItem: View {
                     .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 5))
             }.frame(alignment: .leading)
         }
-//        .help(Text("\(String(cString: &channel.title.0))\n\(String(cString: &channel.user_name.0))\n\(String(cString: &channel.game_name.0))"))
+        .help (
+            Text(String(cString: &stream.stream.pointee.title.0))
+        )
         .frame(minHeight: 45)
         .background(isHover ? .gray.opacity(0.1) : .clear).clipShape(RoundedRectangle(cornerRadius: 10))
         .onHover(perform: { hover in
             isHover = hover
         })
     }
-    
+
     func abbreviate(index: Int) -> Text {
         var count: Array<CChar> = Array(repeating: 32, count: 15)
         var s = String("\(self.followed.followed![index].viewer_count)")
@@ -100,7 +104,7 @@ struct FollowBarView: View {
     @EnvironmentObject var selectedStream: StreamSelection
     @EnvironmentObject var vidModel: VideoViewModel
     @EnvironmentObject var chat: Chat
-    
+
     var body: some View {
         VStack {
             HStack(alignment: .center) {
@@ -121,7 +125,7 @@ struct FollowBarView: View {
                         vidModel.vid = init_video_player()
                         get_video_token(&client.client, &vidModel.vid, selectedStream.channel)
                         get_stream_url(&client.client, selectedStream.channel, &vidModel.vid, false)
-                        vidModel.urlString = String(cString: &vidModel.vid.resolution_list.0.link.0)
+                        vidModel.url = URL(string: String(cString: &vidModel.vid.resolution_list.0.link.0))!
                         chat.set_channel(channel: selectedStream.channel!)
                         vidModel.vid_playing = true
                     }

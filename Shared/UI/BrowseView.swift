@@ -120,7 +120,7 @@ struct GameStreamItem: View {
             video.vid = init_video_player()
             get_video_token(&client.client, &video.vid, selectedStream.channel)
             get_stream_url(&client.client, selectedStream.channel, &video.vid, false)
-            video.urlString = String(cString:&video.vid.resolution_list.0.link.0)
+            video.url = URL(string: String(cString:&video.vid.resolution_list.0.link.0))!
             chat.set_channel(channel: selectedStream.channel!)
             video.vid_playing = true
         }
