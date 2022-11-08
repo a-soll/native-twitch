@@ -9,7 +9,7 @@
             <sparkle:version>1.9.5</sparkle:version>
             <sparkle:shortVersionString>1.9.5</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>12.3</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/a-soll/native-twitch/releases/latest/download/Native.Twitch.app.zip" length="4180763" type="application/octet-stream" sparkle:edSignature="Jvh62hjmo37hNs+2sDyIuLwtSJASvum9bURMeTE3X+XDNUR7R7ZldWBEnVLdVudlTFB/3lUnINsTuNmlLpPnAQ=="/>
+            <enclosure url="https://github.com/a-soll/native-twitch/releases/latest/download/Native.Twitch.app.zip" length="4180763" type="application/octet-stream" sparkle:edSignature="I5qNRXnlukAa183HVOsCGefEmmLS53RstyWpophdmC0B0mvE3QIF64xwEIr8qsAgPmXZiECmwiTJtdKIZI0PDw=="/>
             <description><![CDATA[
                 <h2>New features</h2>
                 <p> Custom video overlay! Videos now show an overlay with profile pic as well as current game and viewers.</p>
