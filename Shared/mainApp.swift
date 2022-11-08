@@ -23,7 +23,7 @@ struct apple_twitchApp: App {
                 ContentView()
                     .navigationTitle(Text(""))
             } else {
-                FirstBoot(authItem: auth, isSettings: false)
+                PreferencesView(authItem: auth)
             }
         }
         .commands {
