@@ -7,11 +7,41 @@
 
 import SwiftUI
 import Foundation
+import Kingfisher
+
+class UserImage: ObservableObject {
+    var id = UUID()
+    var client = SwiftClient()
+    var user = User()
+    @Published var image: KFImage
+    @Published var view_count = "0"
+    @State var fetched = false
+    var userLogin: String
+    var url: String = ""
+    
+    init(userLogin: String) {
+        image = KFImage(URL(string: url)).placeholder { Image(systemName: "circle.fill").resizable().frame(width: 100, height: 100) }
+        self.userLogin = userLogin
+        get_url()
+    }
+    
+    func get_url() {
+        DispatchQueue.global(qos: .background).async { [self] in
+            get_user_by_login(&client.client, &user, userLogin)
+            DispatchQueue.main.async { [self] in
+                url = String(cString: &user.profile_image_url.0)
+                image = KFImage(URL(string: url))
+                fetched = true
+            }
+        }
+    }
+}
 
 class AuthItem: ObservableObject {
     @Published var isAuthed = false
     var userLogin = ""
     var userId = ""
+    var user = User()
     
     func checkAuth() {
         let client = SwiftClient()
@@ -19,6 +49,7 @@ class AuthItem: ObservableObject {
         if self.isAuthed {
             userLogin = fromCString(str: client.client.user_login) as String
             userId = fromCString(str: client.client.user_id) as String
+            get_user_by_id(&client.client, &self.user, client.client.user_id)
         }
     }
 }
@@ -38,12 +69,68 @@ struct FirstBoot: View {
     }
 }
 
+struct ProfileView: View {
+    @ObservedObject var img: UserImage
+    @ObservedObject var authItem: AuthItem
+    @State var user: User
+    
+    var body: some View {
+        VStack {
+            if (authItem.isAuthed) {
+                img.image
+                    .resizable()
+                    .frame(width: 100, height: 100)
+                    .clipShape(Circle())
+                Text(String(cString: &user.display_name.0)).font(.headline)
+            } else {
+                Image(systemName: "person.circle.fill")
+                    .resizable()
+                    .frame(width: 100, height: 100)
+                    .clipShape(Circle())
+                Text("Not logged in")
+            }
+        }
+    }
+}
+
+struct TokenInput: View {
+    @ObservedObject var authItem: AuthItem
+    @AppStorage("AccessToken", store: .standard) private var accessToken = ""
+    @AppStorage("UserLogin", store: .standard) private var userLogin = ""
+    @AppStorage("UserId", store: .standard) private var userId = ""
+    @State var tryAgain = false
+    @State private var tmp = ""
+    
+    var body: some View {
+        VStack {
+            TextField(
+                text: $tmp,
+                prompt: Text("Required")
+            ) {
+                Text("Access token:")
+            }
+            .onSubmit {
+                accessToken = tmp
+                authItem.checkAuth()
+                if authItem.isAuthed {
+                    userId = authItem.userId
+                    userLogin = authItem.userLogin
+                } else {
+                    tryAgain = true
+                }
+            }
+            Text("[Get token](https://twitchtokengenerator.com/quick/ffvXXf6nVX)")
+            if self.tryAgain {
+                Text("Invalid token. Please retry.").foregroundColor(.red)
+            }
+        }
+    }
+}
+
 struct AuthView: View {
     @AppStorage("AccessToken", store: .standard) private var accessToken = ""
     @AppStorage("UserLogin", store: .standard) private var userLogin = ""
     @AppStorage("UserId", store: .standard) private var userId = ""
-    @State private var tmp = ""
-    @State var tryAgain = false
     var authItem: AuthItem
     
     init(authItem: AuthItem) {
@@ -53,27 +140,13 @@ struct AuthView: View {
     var body: some View {
         Form {
             Section {
-                VStack {
-                    TextField(
-                        text: $tmp,
-                        prompt: Text("Required")
-                    ) {
-                        Text("Access token:")
-                    }
-                    .onSubmit {
-                        accessToken = tmp
-                        authItem.checkAuth()
-                        if authItem.isAuthed {
-                            userId = authItem.userId
-                            userLogin = authItem.userLogin
-                        } else {
-                            tryAgain = true
-                        }
-                    }
-                    Text("[Get token](https://twitchtokengenerator.com/quick/ffvXXf6nVX)")
-                        .offset(x: 25)
-                    if self.tryAgain {
-                        Text("Invalid token. Please retry.").foregroundColor(.red)
+                if (!authItem.isAuthed) {
+                    TokenInput(authItem: authItem)
+                } else {
+                    HStack {
+                        Text("Access token")
+                        Spacer()
+                        Text(accessToken).textSelection(.enabled)
                     }
                 }
             }
@@ -83,28 +156,47 @@ struct AuthView: View {
 
 struct GeneralSettingsView: View {
     @AppStorage("ffzSettings", store: .standard) private var ffz_Path: String = ""
-    let authItem: AuthItem
+    @AppStorage("UserLogin", store: .standard) private var userLogin = ""
+    @ObservedObject var authItem: AuthItem
+    
     var body: some View {
-        Form {
-            Section {
-                HStack(alignment: .center) {
-                    Text("FFZ Settings")
-                    Button("Select FFZ settings") {
-                        let panel = NSOpenPanel()
-                        panel.allowsMultipleSelection = false
-                        panel.canChooseDirectories = false
-                        if panel.runModal() == .OK {
-                            self.ffz_Path = panel.url?.absoluteString ?? ""
-                            do {
-                                let str = try String(contentsOf: URL(string: ffz_Path)!, encoding: String.Encoding.utf8)
-                                ffz_Path = str
-                            } catch {
-                                print("couldn't")
+        ScrollView {
+            Form {
+                VStack {
+                    Spacer().frame(height: 10)
+                    ProfileView(img: UserImage(userLogin: authItem.userLogin), authItem: authItem, user: authItem.user)
+                    Button("Logout", action: {
+                        self.authItem.isAuthed = false
+                    })
+                    Section {
+                        GroupBox(label: Text("Authorization").font(.headline)) {
+                            HStack {
+                                AuthView(authItem: self.authItem)
                             }
                         }
-                    }
+                    }.padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 15))
+                    Section {
+                        GroupBox(label: Text("FFZ Settings").font(.headline)) {
+                            HStack {
+                                Text("FFZ Settings Json")
+                                Spacer()
+                                Button("Select...") {
+                                    let panel = NSOpenPanel()
+                                    panel.allowsMultipleSelection = false
+                                    panel.canChooseDirectories = false
+                                    if panel.runModal() == .OK {
+                                        self.ffz_Path = panel.url?.absoluteString ?? ""
+                                        do {
+                                            let str = try String(contentsOf: URL(string: ffz_Path)!, encoding: String.Encoding.utf8)
+                                            ffz_Path = str
+                                        } catch {
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }.padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 15))
                 }
-                AuthView(authItem: self.authItem)
             }
         }
     }
@@ -130,6 +222,6 @@ struct PreferencesView: View {
             //                            .tag(Tabs.advanced)
         }
         //        .padding(20)
-        .frame(width: 375, height: 150)
+        .frame(minWidth: 375, minHeight: 150)
     }
 }
