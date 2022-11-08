@@ -57,6 +57,34 @@ struct NSVideoView: NSViewRepresentable {
     }
 }
 
+struct OverlayView: View {
+    @ObservedObject var img: ProfImage
+    @State var stream: StreamItem
+    
+    var body: some View {
+        HStack {
+            img.image
+                .resizable()
+                .scaledToFit()
+                .clipShape(Circle())
+                .frame(width: 85, height: 85)
+            VStack(alignment: .leading) {
+                Text(String(cString: &stream.stream.user_name.0))
+                    .font(.largeTitle)
+                    .font(.system(size: 38))
+                Text(String(cString: &stream.stream.title.0))
+                Text("Playing ") +
+                Text(String(cString: &stream.stream.game_name.0)) +
+                Text(" for ") +
+                Text("\(stream.stream.viewer_count)") +
+                Text(" viewers")
+            }        .padding(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
+                .background(.black.opacity(0.7)).cornerRadius(15)
+        }
+        Spacer()
+    }
+}
+
 struct PlayerView: View {
     var client = SwiftClient()
     @StateObject var helper = Helper(hide: true)
@@ -64,7 +92,7 @@ struct PlayerView: View {
     @State var firstLoad = true
     @ObservedObject var img: ProfImage
     @State var hideControlTimer: Timer?
-    @State var refreshTimer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
+    @State var refreshTimer = Timer.publish(every: 45, on: .main, in: .common).autoconnect()
     @ObservedObject var stream: StreamItem
     @State var monitor: Any?
     
@@ -76,26 +104,11 @@ struct PlayerView: View {
                     Spacer().frame(height: 10)
                     HStack {
                         Spacer().frame(width: 10)
-                        img.image
-                            .resizable()
-                            .scaledToFit()
-                            .clipShape(Circle())
-                            .frame(width: 85, height: 85)
-                        VStack(alignment: .leading) {
-                            Text(String(cString: &stream.stream.user_name.0))
-                                .font(.largeTitle)
-                                .font(.system(size: 38))
-                            Text(String(cString: &stream.stream.title.0))
-                            Text("Playing ") +
-                            Text(String(cString: &stream.stream.game_name.0)) +
-                            Text(" for ") +
-                            Text("\(stream.stream.viewer_count)") +
-                            Text(" viewers")
-                        }
+                        OverlayView(img: img, stream: stream)
                         Spacer()
                     }
                     Spacer()
-                }.frame(minWidth: 500, minHeight: 500)
+                }
             }
         }.onAppear(perform: {
             if (firstLoad) {
