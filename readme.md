@@ -2,10 +2,9 @@
 Native Twitch is a native MacOS app for Twitch with FFZ support. Still in very early development.
 
 ## For FFZ support
-1. Right click Native Twitch.app and click Show Package Contents
-2. Navigate to Contents/Resources and paste your FFZ settings json file there.
-
-* This is going to be resolved in application settings later on
+1. Export your user settings from FFZ extension in your browser
+2. Open Native Twitch preferences and click on the button in the FFZ Settings section
+3. Select the FFZ settings .json file that you exported from the browser. App may need to be relaunched for changes to take effect.
 
 ## Screenshots
 #### Landing page
