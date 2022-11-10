@@ -47,6 +47,7 @@ struct NSVideoView: NSViewRepresentable {
         playerView.allowsPictureInPicturePlayback = true
         playerView.controlsStyle = .floating
         playerView.player = AVPlayer(url: vidModel.url!)
+        playerView.player?.preventsDisplaySleepDuringVideoPlayback = true
         self.playerView = playerView
         playerView.player?.play()
         return playerView

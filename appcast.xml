@@ -4,6 +4,22 @@
         <title>Native Twitch</title>
         <link>https://a-soll.github.io/native-twitch/appcast.xml</link>
         <item>
+            <title>1.9.6</title>
+            <pubDate>Thu, 10 Nov 2022 17:05:08 -0500</pubDate>
+            <sparkle:version>1.9.6</sparkle:version>
+            <sparkle:shortVersionString>1.9.6</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>12.3</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/a-soll/native-twitch/releases/latest/download/Native.Twitch.app.zip" length="4182235" type="application/octet-stream" sparkle:edSignature="yiVM7+CSFJEum+Wf5E/Vbr4KC6tgQimJ8qjTfdAIcGe4At5WJOZAFp2cJrLLVimlflBWCprbdz/1z03+8xdBBA=="/>
+            <description><![CDATA[
+                <h2>New features</h2>
+                <p> Now uses TTV.LOL proxy for ad free streams. Also now supports low latency!
+                <h2>Bug fixes</h2>
+                <p>Improved layouts for game/stream view</p>
+                <p>Reverted the "no more flickering of sidebar profile pics" because it prevented the pictures from updating on refresh</p>
+                <p>The video player now prevents the display from sleeping</p>
+            ]]></description>
+        </item>
+        <item>
             <title>1.9.5</title>
             <pubDate>Tue, 08 Nov 2022 00:32:58 -0500</pubDate>
             <sparkle:version>1.9.5</sparkle:version>

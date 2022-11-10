@@ -19,7 +19,11 @@ class ProfileImage: ObservableObject {
     var url: String = ""
     
     init(stream: TwitchStream) {
-        image = KFImage(URL(string: url)).placeholder { Image(systemName: "circle.fill").resizable().frame(width: 75, height: 75) }
+        image = KFImage(URL(string: url)).placeholder { Image(systemName: "circle.fill")
+            .resizable()
+            .frame(width: 75, height: 75)
+            .foregroundColor(.gray)
+        }
         self.stream = stream
         get_url()
     }
@@ -41,14 +45,14 @@ struct FollowBarItem: View {
     @EnvironmentObject var followed: FollowedChannels
     @EnvironmentObject var selectedStream: StreamSelection
     @State private var isHover = false
-    @StateObject var img: ProfileImage
+    @ObservedObject var img: ProfileImage
     var stream: StreamItem
     var index: Int
     
     init(index: Int, stream: TwitchStream) {
         self.index = index
         self.stream = StreamItem(stream: stream)
-        self._img = StateObject(wrappedValue: ProfileImage(stream: stream))
+        self.img = ProfileImage(stream: stream)
     }
     
     var body: some View {
@@ -122,13 +126,13 @@ struct FollowBarView: View {
                         vidModel.vid_playing = false
                         selectedStream.set_selection(stream: followed.followed![i])
                         vidModel.vid = init_video_player()
-                        get_video_token(&client.client, &vidModel.vid, &selectedStream.stream)
-                        get_stream_url(&client.client, &selectedStream.stream, &vidModel.vid, false)
+                        get_stream_url(&client.client, &selectedStream.stream, &vidModel.vid, false, true)
                         vidModel.url = URL(string: String(cString: &vidModel.vid.resolution_list.0.link.0))!
                         chat.set_channel(channel: &selectedStream.stream)
                         vidModel.vid_playing = true
                     }
-            }.environmentObject(self.followed)
+            }
+            .environmentObject(self.followed)
         }
     }
 }

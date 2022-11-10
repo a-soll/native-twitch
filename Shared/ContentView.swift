@@ -29,7 +29,7 @@ struct ContentView: View {
             }
             else {
                 BrowseView(gameSelected: $gameSelected)
-                    .frame(minWidth: 600)
+                    .frame(minWidth: 770)
             }
         }
         .toolbar {

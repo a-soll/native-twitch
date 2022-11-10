@@ -35,7 +35,7 @@ struct CategoryView: View {
     @Binding var gameSelected: Bool
     @EnvironmentObject var gameSelection: GameSelection
     @EnvironmentObject var browse: Browse
-    var gridItemLayout: [GridItem] = Array(repeating: .init(.adaptive(minimum: 200)), count: 2)
+    var gridItemLayout: [GridItem] = Array(repeating: .init(.adaptive(minimum: 200)), count: 3)
     
     init(gameSelected: Binding<Bool>) {
         self._gameSelected = gameSelected
@@ -118,8 +118,7 @@ struct GameStreamItem: View {
         .onTapGesture {
             selectedStream.set_selection(stream: self.stream)
             video.vid = init_video_player()
-            get_video_token(&client.client, &video.vid, &selectedStream.stream)
-            get_stream_url(&client.client, &selectedStream.stream, &video.vid, false)
+            get_stream_url(&client.client, &selectedStream.stream, &video.vid, false, true)
             video.url = URL(string: String(cString:&video.vid.resolution_list.0.link.0))!
             chat.set_channel(channel: &selectedStream.stream)
             video.vid_playing = true
@@ -130,7 +129,7 @@ struct GameStreamItem: View {
 struct GameStreamView: View {
     var game: UnsafeMutablePointer<Game>?
     @ObservedObject var gameStreams: GameStreams
-    var gridItemLayout: [GridItem] = Array(repeating: .init(.adaptive(minimum: 300)), count: 3)
+    var gridItemLayout: [GridItem] = Array(repeating: .init(.adaptive(minimum: 400)), count: 2)
     
     init(game: UnsafeMutablePointer<Game>) {
         self.game = game
