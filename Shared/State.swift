@@ -12,6 +12,10 @@ func fromCString(str: UnsafePointer<CChar>) -> NSString {
     return s!
 }
 
+func CString(str: UnsafeMutablePointer<CChar>) -> String {
+    return (NSString(cString: str, encoding: NSUTF8StringEncoding) ?? (NSString(cString: str, encoding: NSUnicodeStringEncoding)!)) as String
+}
+
 class VideoViewModel: ObservableObject {
     @Published var vid_playing = false
     @Published var url: URL?
@@ -64,7 +68,7 @@ class Chat: ObservableObject {
     @Published var channel = ""
 
     func set_channel(channel: UnsafeMutablePointer<TwitchStream>) {
-        self.channel = String(cString: &channel.pointee.user_login.0)
+        self.channel = CString(str: &channel.pointee.user_login.0)
     }
 }
 

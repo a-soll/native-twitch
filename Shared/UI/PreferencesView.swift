@@ -29,7 +29,7 @@ class UserImage: ObservableObject {
         DispatchQueue.global(qos: .background).async { [self] in
             get_user_by_login(&client.client, &user, userLogin)
             DispatchQueue.main.async { [self] in
-                url = String(cString: &user.profile_image_url.0)
+                url = CString(str: &user.profile_image_url.0)
                 image = KFImage(URL(string: url))
                 fetched = true
             }
@@ -81,7 +81,7 @@ struct ProfileView: View {
                     .resizable()
                     .frame(width: 100, height: 100)
                     .clipShape(Circle())
-                Text(String(cString: &user.display_name.0)).font(.headline)
+                Text(CString(str: &user.display_name.0)).font(.headline)
             } else {
                 Image(systemName: "person.circle.fill")
                     .resizable()

@@ -7,7 +7,7 @@ class SwiftClient {
     var userId = UserDefaults.standard.string(forKey: "UserId")
 
     init() {
-        Client_init(&self.client, self.accessToken, "gp762nuuoqcoxypju8c569th9wz7q5", self.userId, self.userLogin)
+        Client_init(&self.client, self.accessToken, "gp762nuuoqcoxypju8c569th9wz7q5", &self.userId, self.userLogin)
     }
 
     deinit {

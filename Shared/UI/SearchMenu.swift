@@ -30,7 +30,7 @@ class SearchedProfileImage: ObservableObject {
             var user = User()
             get_user_by_login(&client.client, &user, &channel.pointee.broadcaster_login.0)
             DispatchQueue.main.async { [self] in
-                url = String(cString: &user.profile_image_url.0)
+                url = CString(str: &user.profile_image_url.0)
                 image = KFImage(URL(string: url))
                 fetched = true
             }
@@ -44,7 +44,7 @@ struct SearchItem: View {
     @ObservedObject var image: SearchedProfileImage
     
     init(channel: UnsafeMutablePointer<SearchedChannel>) {
-        self.login = String(cString: &channel.pointee.broadcaster_login.0)
+        self.login = CString(str: &channel.pointee.broadcaster_login.0)
         image = SearchedProfileImage(channel: channel)
         self.is_live = channel.pointee.is_live
     }
@@ -133,7 +133,7 @@ struct PopView: View {
                     selectedStream.set_selection(stream: stream)
                     vidModel.vid = init_video_player()
                     get_stream_url(&client.client, &selectedStream.stream, &vidModel.vid, false, true)
-                    vidModel.url = URL(string: String(cString: &vidModel.vid.resolution_list.0.link.0))!
+                    vidModel.url = URL(string: CString(str: &vidModel.vid.resolution_list.0.link.0))!
                     chat.set_channel(channel: &stream)
                     vidModel.vid_playing = true
                     showPopup = false

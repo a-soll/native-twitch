@@ -13,8 +13,8 @@ struct BrowseItem: View {
     @State var animate = false
     
     init(game: UnsafeMutablePointer<Game>) {
-        self.url = URL(string: String(cString: &game.pointee.box_art_url.0)) ?? URL(string: "")!
-        self.title = String(cString: &game.pointee.name.0)
+        self.url = URL(string: NSString(utf8String: &game.pointee.box_art_url.0)! as String) ?? URL(string: "")!
+        self.title = NSString(utf8String: &game.pointee.name.0)! as String
     }
     
     var body: some View {
@@ -78,12 +78,12 @@ struct GameStreamItem: View {
     
     init(stream: inout TwitchStream) {
         self.stream = stream
-        self.userName = String(cString: &stream.user_name.0, encoding: String.Encoding.utf8) ?? "\(String(cString: &stream.user_name.0, encoding: String.Encoding.unicode)!)"
-        self.url = String(cString: &stream.thumbnail_url.0)
-        self.title = String(cString: &stream.title.0)
+        self.userName = CString(str: &stream.user_name.0)
+        self.url = CString(str: &stream.thumbnail_url.0)
+        self.title = CString(str: &stream.title.0)
         self.viewerCount = Int(stream.viewer_count)
         self.thumbnail = ThumbailImage(url: URL(string: self.url)!)
-        self.userLogin = String(cString: &stream.user_login.0)
+        self.userLogin = CString(str: &stream.user_login.0)
     }
     
     var body: some View {
@@ -119,7 +119,7 @@ struct GameStreamItem: View {
             selectedStream.set_selection(stream: self.stream)
             video.vid = init_video_player()
             get_stream_url(&client.client, &selectedStream.stream, &video.vid, false, true)
-            video.url = URL(string: String(cString:&video.vid.resolution_list.0.link.0))!
+            video.url = URL(string: CString(str: &video.vid.resolution_list.0.link.0))!
             chat.set_channel(channel: &selectedStream.stream)
             video.vid_playing = true
         }

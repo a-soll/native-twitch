@@ -29,7 +29,7 @@ class ProfImage: ObservableObject {
             var user = User()
             get_user_by_login(&client.client, &user, &stream.user_login.0)
             DispatchQueue.main.async { [self] in
-                url = String(cString: &user.profile_image_url.0)
+                url = CString(str: &user.profile_image_url.0)
                 image = KFImage(URL(string: url))
                 fetched = true
             }
@@ -70,12 +70,12 @@ struct OverlayView: View {
                 .clipShape(Circle())
                 .frame(width: 85, height: 85)
             VStack(alignment: .leading) {
-                Text(String(cString: &stream.stream.user_name.0))
+                Text(CString(str: &stream.stream.user_name.0))
                     .font(.largeTitle)
                     .font(.system(size: 38))
-                Text(String(cString: &stream.stream.title.0))
+                Text(CString(str: &stream.stream.title.0))
                 Text("Playing ") +
-                Text(String(cString: &stream.stream.game_name.0)) +
+                Text(CString(str: &stream.stream.game_name.0)) +
                 Text(" for ") +
                 Text("\(stream.stream.viewer_count)") +
                 Text(" viewers")
