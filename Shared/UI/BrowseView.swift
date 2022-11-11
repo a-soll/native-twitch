@@ -13,8 +13,8 @@ struct BrowseItem: View {
     @State var animate = false
     
     init(game: UnsafeMutablePointer<Game>) {
-        self.url = URL(string: NSString(utf8String: &game.pointee.box_art_url.0)! as String) ?? URL(string: "")!
-        self.title = NSString(utf8String: &game.pointee.name.0)! as String
+        self.url = URL(string: CString(str: &game.pointee.box_art_url.0)) ?? URL(string: "")!
+        self.title = CString(str: &game.pointee.name.0)
     }
     
     var body: some View {

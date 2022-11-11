@@ -47,8 +47,8 @@ class AuthItem: ObservableObject {
         let client = SwiftClient()
         self.isAuthed = validate_token(&client.client)
         if self.isAuthed {
-            userLogin = fromCString(str: client.client.user_login) as String
-            userId = fromCString(str: client.client.user_id) as String
+            userLogin = client.userLogin!
+            userId = client.userId!
             get_user_by_id(&client.client, &self.user, client.client.user_id)
         }
     }

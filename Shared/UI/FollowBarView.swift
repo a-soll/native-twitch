@@ -20,9 +20,9 @@ class ProfileImage: ObservableObject {
     
     init(stream: TwitchStream) {
         image = KFImage(URL(string: url)).placeholder { Image(systemName: "circle.fill")
-            .resizable()
-            .frame(width: 75, height: 75)
-            .foregroundColor(.gray)
+                .resizable()
+                .frame(width: 75, height: 75)
+                .foregroundColor(.gray)
         }
         self.stream = stream
         get_url()
@@ -33,7 +33,7 @@ class ProfileImage: ObservableObject {
             var user = User()
             get_user_by_login(&client.client, &user, &stream.user_login.0)
             DispatchQueue.main.async { [self] in
-                url = NSString(cString: &user.profile_image_url.0, encoding: NSUTF8StringEncoding)! as String
+                url = CString(str: &user.profile_image_url.0)
                 image = KFImage(URL(string: url))
                 fetched = true
             }
@@ -64,9 +64,9 @@ struct FollowBarItem: View {
                 .clipShape(Circle())
                 .padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 0))
             VStack(alignment: .leading) {
-                Text(NSString(cString: &followed.followed![index].user_name.0, encoding: NSUTF8StringEncoding)! as String)
+                Text(CString(str: &followed.followed![index].user_name.0))
                     .frame(maxWidth: .infinity, alignment: .leading)
-                Text(NSString(cString: &followed.followed![index].game_name.0, encoding: NSUTF8StringEncoding)! as String)
+                Text(CString(str: &followed.followed![index].game_name.0))
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                     .frame(alignment: .leading)
@@ -79,7 +79,7 @@ struct FollowBarItem: View {
             }.frame(alignment: .leading)
         }
         .help (
-            Text(NSString(cString: &stream.stream.title.0, encoding: NSUTF8StringEncoding)! as String)
+            Text(CString(str: &stream.stream.title.0))
         )
         .frame(minHeight: 45)
         .background(isHover ? .gray.opacity(0.1) : .clear).clipShape(RoundedRectangle(cornerRadius: 10))
@@ -91,12 +91,8 @@ struct FollowBarItem: View {
     func abbreviate(index: Int) -> Text {
         var count: Array<CChar> = Array(repeating: 32, count: 15)
         var s = String("\(self.followed.followed![index].viewer_count)")
-        if s.count > 3 {
-            abbreviate_number(&s, &count)
-            return Text(NSString(cString: count, encoding: NSUTF8StringEncoding)! as String)
-        } else {
-            return Text(s)
-        }
+        abbreviate_number(&s, &count)
+        return Text(CString(str: &count))
     }
 }
 
@@ -127,7 +123,7 @@ struct FollowBarView: View {
                         selectedStream.set_selection(stream: followed.followed![i])
                         vidModel.vid = init_video_player()
                         get_stream_url(&client.client, &selectedStream.stream, &vidModel.vid, false, true)
-                        vidModel.url = URL(string: NSString(cString: &vidModel.vid.resolution_list.0.link.0, encoding: NSUTF8StringEncoding)! as String)!
+                        vidModel.url = URL(string: CString(str: &vidModel.vid.resolution_list.0.link.0))
                         chat.set_channel(channel: &selectedStream.stream)
                         vidModel.vid_playing = true
                     }
