@@ -117,8 +117,8 @@ struct GameStreamItem: View {
         })
         .onTapGesture {
             selectedStream.set_selection(stream: self.stream)
-            video.vid = init_video_player()
-            get_stream_url(&client.client, &selectedStream.stream, &video.vid, false, true)
+            init_video_player(&video.vid)
+            get_stream_url(&client.client, &selectedStream.stream, &video.vid, false, self.client.useAdblock)
             video.url = URL(string: CString(str: &video.vid.resolution_list.0.link.0))!
             chat.set_channel(channel: &selectedStream.stream)
             video.vid_playing = true

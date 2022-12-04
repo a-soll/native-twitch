@@ -48,11 +48,15 @@ struct FollowBarItem: View {
     @ObservedObject var img: ProfileImage
     var stream: StreamItem
     var index: Int
+    var userName: String
+    var gameName: String
     
-    init(index: Int, stream: TwitchStream) {
+    init(index: Int, stream: inout TwitchStream) {
         self.index = index
         self.stream = StreamItem(stream: stream)
         self.img = ProfileImage(stream: stream)
+        self.userName = CString(str: &stream.user_name.0)
+        self.gameName = CString(str: &stream.game_name.0)
     }
     
     var body: some View {
@@ -64,9 +68,9 @@ struct FollowBarItem: View {
                 .clipShape(Circle())
                 .padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 0))
             VStack(alignment: .leading) {
-                Text(CString(str: &followed.followed![index].user_name.0))
+                Text(userName)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                Text(CString(str: &followed.followed![index].game_name.0))
+                Text(gameName)
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                     .frame(alignment: .leading)
@@ -117,12 +121,12 @@ struct FollowBarView: View {
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
             }
             List(0..<Int(followed.count), id: \.self) { i in
-                FollowBarItem(index: i, stream: followed.followed![i])
+                FollowBarItem(index: i, stream: &followed.followed![i])
                     .onTapGesture {
                         vidModel.vid_playing = false
                         selectedStream.set_selection(stream: followed.followed![i])
-                        vidModel.vid = init_video_player()
-                        get_stream_url(&client.client, &selectedStream.stream, &vidModel.vid, false, true)
+                        init_video_player(&vidModel.vid)
+                        get_stream_url(&client.client, &selectedStream.stream, &vidModel.vid, false, self.client.useAdblock)
                         vidModel.url = URL(string: CString(str: &vidModel.vid.resolution_list.0.link.0))
                         chat.set_channel(channel: &selectedStream.stream)
                         vidModel.vid_playing = true

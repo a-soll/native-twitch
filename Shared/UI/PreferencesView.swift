@@ -39,6 +39,7 @@ class UserImage: ObservableObject {
 
 class AuthItem: ObservableObject {
     @Published var isAuthed = false
+    var oAuth = ""
     var userLogin = ""
     var userId = ""
     var user = User()
@@ -98,6 +99,7 @@ struct TokenInput: View {
     @AppStorage("AccessToken", store: .standard) private var accessToken = ""
     @AppStorage("UserLogin", store: .standard) private var userLogin = ""
     @AppStorage("UserId", store: .standard) private var userId = ""
+    @AppStorage("OAuthToken", store: .standard) private var oAuthToken = ""
     @State var tryAgain = false
     @State private var tmp = ""
     
@@ -127,11 +129,29 @@ struct TokenInput: View {
     }
 }
 
+struct PlayerOptions: View {
+    @AppStorage("UseAdblock", store: .standard) private var useAdblock = false
+    
+    var body: some View {
+        Form {
+            HStack {
+                Text("Use adblock (ttv.lol)")
+                Spacer()
+                Toggle("", isOn: $useAdblock)
+                    .toggleStyle(.switch)
+            }
+        }
+    }
+}
+
 struct AuthView: View {
     @AppStorage("AccessToken", store: .standard) private var accessToken = ""
     @AppStorage("UserLogin", store: .standard) private var userLogin = ""
     @AppStorage("UserId", store: .standard) private var userId = ""
+    @AppStorage("OAuthToken", store: .standard) private var oAuthToken = ""
     var authItem: AuthItem
+    var placeholder = "Paste OAuth token here"
+    @FocusState private var hasFocus: Bool
     
     init(authItem: AuthItem) {
         self.authItem = authItem
@@ -143,10 +163,27 @@ struct AuthView: View {
                 if (!authItem.isAuthed) {
                     TokenInput(authItem: authItem)
                 } else {
-                    HStack {
-                        Text("Access token")
+                    VStack {
+                        HStack {
+                            Text("Access token")
+                            Spacer()
+                            Text(accessToken).textSelection(.enabled)
+                        }
                         Spacer()
-                        Text(accessToken).textSelection(.enabled)
+                        HStack {
+                            Text("OAuth token")
+                            Spacer()
+                            TextField("", text: $oAuthToken)
+                                .modifier(PlaceholderStyle(showPlaceHolder: oAuthToken.isEmpty, placeholder: "OAuth Token"))
+                                .textFieldStyle(.plain)
+                                .multilineTextAlignment(.trailing)
+                                .onAppear(perform: {
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                        hasFocus = false
+                                    }
+                                })
+                                .focused($hasFocus)
+                        }
                     }
                 }
             }
@@ -196,6 +233,11 @@ struct GeneralSettingsView: View {
                             }
                         }
                     }.padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 15))
+                    Section {
+                        GroupBox(label: Text("Player Settings").font(.headline)) {
+                            PlayerOptions()
+                        }.padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 15))
+                    }
                 }
             }
         }
@@ -223,5 +265,23 @@ struct PreferencesView: View {
         }
         //        .padding(20)
         .frame(minWidth: 375, minHeight: 150)
+    }
+}
+
+public struct PlaceholderStyle: ViewModifier {
+    var showPlaceHolder: Bool
+    var placeholder: String
+    
+    public func body(content: Content) -> some View {
+        ZStack(alignment: .trailing) {
+            if showPlaceHolder {
+                Text(placeholder)
+                    .padding(.horizontal, 5)
+                    .foregroundColor(.gray)
+            }
+            content
+                .foregroundColor(Color.white)
+                .padding(5.0)
+        }
     }
 }
