@@ -18,13 +18,13 @@ class UserImage: ObservableObject {
     @State var fetched = false
     var userLogin: String
     var url: String = ""
-    
+
     init(userLogin: String) {
-        image = KFImage(URL(string: url)).placeholder { Image(systemName: "circle.fill").resizable().frame(width: 100, height: 100) }
+        image = KFImage(URL(string: url)).placeholder { Image(systemName: "person.fill").resizable().frame(width: 100, height: 100) }
         self.userLogin = userLogin
         get_url()
     }
-    
+
     func get_url() {
         DispatchQueue.global(qos: .background).async { [self] in
             get_user_by_login(&client.client, &user, userLogin)
@@ -39,18 +39,19 @@ class UserImage: ObservableObject {
 
 class AuthItem: ObservableObject {
     @Published var isAuthed = false
+    @AppStorage("UserId", store: .standard) var userId = ""
     var oAuth = ""
-    var userLogin = ""
-    var userId = ""
+    @AppStorage("UserLogin", store: .standard) var userLogin = ""
     var user = User()
-    
+
     func checkAuth() {
         let client = SwiftClient()
         self.isAuthed = validate_token(&client.client)
+
         if self.isAuthed {
-            userLogin = client.userLogin!
-            userId = client.userId!
-            get_user_by_id(&client.client, &self.user, client.client.user_id)
+            self.userLogin = client.userLogin!
+            self.userId = fromCString(str: &client.client.user_id.0) as String
+            get_user_by_id(&client.client, &self.user, userId)
         }
     }
 }
@@ -58,12 +59,12 @@ class AuthItem: ObservableObject {
 struct FirstBoot: View {
     var isSettings: Bool
     var authItem: AuthItem
-    
+
     init(authItem: AuthItem, isSettings: Bool) {
         self.isSettings = isSettings
         self.authItem = authItem
     }
-    
+
     var body: some View {
         AuthView(authItem: self.authItem)
             .frame(width: 350, height: 150)
@@ -74,7 +75,7 @@ struct ProfileView: View {
     @ObservedObject var img: UserImage
     @ObservedObject var authItem: AuthItem
     @State var user: User
-    
+
     var body: some View {
         VStack {
             if (authItem.isAuthed) {
@@ -97,12 +98,12 @@ struct ProfileView: View {
 struct TokenInput: View {
     @ObservedObject var authItem: AuthItem
     @AppStorage("AccessToken", store: .standard) private var accessToken = ""
-    @AppStorage("UserLogin", store: .standard) private var userLogin = ""
-    @AppStorage("UserId", store: .standard) private var userId = ""
+    var userLogin = UserDefaults.standard.string(forKey: "UserLogin")
+    var userId = UserDefaults.standard.string(forKey: "UserId")
     @AppStorage("OAuthToken", store: .standard) private var oAuthToken = ""
     @State var tryAgain = false
     @State private var tmp = ""
-    
+
     var body: some View {
         VStack {
             TextField(
@@ -114,10 +115,7 @@ struct TokenInput: View {
             .onSubmit {
                 accessToken = tmp
                 authItem.checkAuth()
-                if authItem.isAuthed {
-                    userId = authItem.userId
-                    userLogin = authItem.userLogin
-                } else {
+                if !authItem.isAuthed {
                     tryAgain = true
                 }
             }
@@ -131,7 +129,7 @@ struct TokenInput: View {
 
 struct PlayerOptions: View {
     @AppStorage("UseAdblock", store: .standard) private var useAdblock = false
-    
+
     var body: some View {
         Form {
             HStack {
@@ -152,11 +150,11 @@ struct AuthView: View {
     var authItem: AuthItem
     var placeholder = "Paste OAuth token here"
     @FocusState private var hasFocus: Bool
-    
+
     init(authItem: AuthItem) {
         self.authItem = authItem
     }
-    
+
     var body: some View {
         Form {
             Section {
@@ -193,15 +191,14 @@ struct AuthView: View {
 
 struct GeneralSettingsView: View {
     @AppStorage("ffzSettings", store: .standard) private var ffz_Path: String = ""
-    @AppStorage("UserLogin", store: .standard) private var userLogin = ""
     @ObservedObject var authItem: AuthItem
-    
+
     var body: some View {
         ScrollView {
             Form {
                 VStack {
                     Spacer().frame(height: 10)
-                    ProfileView(img: UserImage(userLogin: authItem.userLogin), authItem: authItem, user: authItem.user)
+                    ProfileView(img: UserImage(userLogin: CString(str: &authItem.user.login.0)), authItem: authItem, user: authItem.user)
                     Button("Logout", action: {
                         self.authItem.isAuthed = false
                     })
@@ -246,7 +243,7 @@ struct GeneralSettingsView: View {
 
 struct PreferencesView: View {
     var authItem: AuthItem
-    
+
     private enum Tabs: Hashable {
         case general, advanced
     }
@@ -271,7 +268,7 @@ struct PreferencesView: View {
 public struct PlaceholderStyle: ViewModifier {
     var showPlaceHolder: Bool
     var placeholder: String
-    
+
     public func body(content: Content) -> some View {
         ZStack(alignment: .trailing) {
             if showPlaceHolder {
