@@ -4,6 +4,22 @@
         <title>Native Twitch</title>
         <link>https://a-soll.github.io/native-twitch/appcast.xml</link>
         <item>
+            <title>1.9.8</title>
+            <pubDate>Sat, 03 Dec 2022 19:46:42 -0700</pubDate>
+            <sparkle:version>1.9.8</sparkle:version>
+            <sparkle:shortVersionString>1.9.8</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>12.3</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/a-soll/native-twitch/releases/latest/download/Native.Twitch.app.zip" length="3447985" type="application/octet-stream" sparkle:edSignature="AniENjpk+sGuTKjpXKQ/1SpZe7u2BkeAqwmPO8NI5M/JYBplcMQltl/wowRVRkd/Y0ntsBslTmRUzl4DSeyfAQ=="/>
+            <description><![CDATA[
+                <h2>New features</h2>
+                Supports OAuth to respect turbo/sub to ignore ads
+                <br>- to enable, open twitch.tv in browser, right click and inspect element, and then paste
+                <br>document.cookie.split("; ").find(item=>item.startsWith("auth-token="))?.split("=")[1]</br>
+                into the browser. Copy the returned token into the OAuth field in Native Twitch's settings and restart app.</p>
+                <p>Added "Use Adblock" toggle in settings to choose whether or not to use ttv.lol proxy. if you have Twitch turbo, it's recommended to leave it off and use the above method for OAuth token.</p>
+            ]]></description>
+        </item>
+        <item>
             <title>1.9.6</title>
             <pubDate>Thu, 10 Nov 2022 17:05:08 -0500</pubDate>
             <sparkle:version>1.9.6</sparkle:version>
