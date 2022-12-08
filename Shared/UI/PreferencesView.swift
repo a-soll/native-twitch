@@ -40,16 +40,26 @@ class UserImage: ObservableObject {
 class AuthItem: ObservableObject {
     @Published var isAuthed = false
     @AppStorage("UserId", store: .standard) var userId = ""
-    var oAuth = ""
+    @AppStorage("OAuthToken", store: .standard) var oAuth = ""
     @AppStorage("UserLogin", store: .standard) var userLogin = ""
+    @AppStorage("AccessToken", store: .standard) var token = ""
     var user = User()
 
     func checkAuth() {
-        let client = SwiftClient()
+        if (userId.isEmpty) {
+            userId = "tmp"
+        }
+        if (userLogin.isEmpty) {
+            userLogin = "tmp"
+        }
+        if (oAuth.isEmpty) {
+            oAuth = " "
+        }
+        var client = SwiftClient()
         self.isAuthed = validate_token(&client.client)
 
         if self.isAuthed {
-            self.userLogin = client.userLogin!
+            self.userLogin = fromCString(str: &client.client.user_login.0) as String
             self.userId = fromCString(str: &client.client.user_id.0) as String
             get_user_by_id(&client.client, &self.user, userId)
         }
@@ -172,7 +182,7 @@ struct AuthView: View {
                             Text("OAuth token")
                             Spacer()
                             TextField("", text: $oAuthToken)
-                                .modifier(PlaceholderStyle(showPlaceHolder: oAuthToken.isEmpty, placeholder: "OAuth Token"))
+                                .modifier(PlaceholderStyle(showPlaceHolder: oAuthToken.isEmpty||oAuthToken.starts(with: " "), placeholder: "OAuth Token"))
                                 .textFieldStyle(.plain)
                                 .multilineTextAlignment(.trailing)
                                 .onAppear(perform: {
