@@ -46,6 +46,7 @@ class AuthItem: ObservableObject {
     var user = User()
 
     func checkAuth() {
+        // need to set default values here since "" is NULL in Swift
         if (userId.isEmpty) {
             userId = "tmp"
         }
@@ -54,6 +55,9 @@ class AuthItem: ObservableObject {
         }
         if (oAuth.isEmpty) {
             oAuth = " "
+        }
+        if (token.isEmpty) {
+            token = "tmp"
         }
         var client = SwiftClient()
         self.isAuthed = validate_token(&client.client)

@@ -4,6 +4,18 @@
         <title>Native Twitch</title>
         <link>https://a-soll.github.io/native-twitch/appcast.xml</link>
         <item>
+            <title>2.0.2</title>
+            <pubDate>Sun, 11 Dec 2022 21:49:18 -0500</pubDate>
+            <sparkle:version>2.0.2</sparkle:version>
+            <sparkle:shortVersionString>2.0.2</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>12.3</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/a-soll/native-twitch/releases/latest/download/Native.Twitch.app.zip" length="3453634" type="application/octet-stream" sparkle:edSignature="m1yHLrnLlb7YLfF+iV1Nj4r7FIKTDrmBHcOtwg7RuHPU7d8uVw19L7hNmSV5Yv7Bge60zSMC7A4ZPSMfuTnfAw=="/>
+            <description><![CDATA[
+                <h2>Bug fixes</h2>
+                <p>Setting initial value to start up string that was missed and causing crash on startup.</p>
+            ]]></description>
+        </item>
+        <item>
             <title>2.0.1</title>
             <pubDate>Thu, 08 Dec 2022 13:39:28 -0500</pubDate>
             <sparkle:version>2.0.1</sparkle:version>
