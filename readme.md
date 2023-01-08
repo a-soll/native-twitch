@@ -23,3 +23,8 @@ More info on this process can be found [here](https://streamlink.github.io/cli/p
 
 #### Theater mode
 <img width="1723" alt="Screen Shot 2022-07-20 at 12 14 52 PM" src="https://user-images.githubusercontent.com/50970854/200234129-72baec54-696f-4fd8-8001-41efc64b9290.png">
+
+#### Building the project
+1. Clone recursively to get the submodules: `git clone --recursive https://github.com/a-soll/native-twitch.git`
+2. Run `build.sh` from project root dir to build the dependencies
+3. Open project in Xcode to run.
