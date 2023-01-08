@@ -30,6 +30,7 @@
 		667CE58528BBDE4B0097D935 /* Browse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667CE58428BBDE4B0097D935 /* Browse.swift */; };
 		667CE58628BBDE4B0097D935 /* Browse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667CE58428BBDE4B0097D935 /* Browse.swift */; };
 		669526CE28BEBE3F00BBF68B /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 669526CD28BEBE3F00BBF68B /* Sparkle */; };
+		66A2A700296B465A0035A89B /* modules in Resources */ = {isa = PBXBuildFile; fileRef = 66A2A6FF296B465A0035A89B /* modules */; };
 		66B3D17E28BC452200552B46 /* submodules in Resources */ = {isa = PBXBuildFile; fileRef = 66B3D17D28BC452200552B46 /* submodules */; };
 		66BCDFCC28BBE6DF00A482B2 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BCDFCB28BBE6DF00A482B2 /* ChatView.swift */; };
 		66BCDFCD28BBE6DF00A482B2 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BCDFCB28BBE6DF00A482B2 /* ChatView.swift */; };
@@ -104,6 +105,7 @@
 		667CE57828BBD7410097D935 /* FollowBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowBarView.swift; sourceTree = "<group>"; };
 		667CE58128BBDDB50097D935 /* BrowseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseView.swift; sourceTree = "<group>"; };
 		667CE58428BBDE4B0097D935 /* Browse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Browse.swift; sourceTree = "<group>"; };
+		66A2A6FF296B465A0035A89B /* modules */ = {isa = PBXFileReference; lastKnownFileType = folder; path = modules; sourceTree = "<group>"; };
 		66B3D17D28BC452200552B46 /* submodules */ = {isa = PBXFileReference; lastKnownFileType = folder; path = submodules; sourceTree = "<group>"; };
 		66BCDFCB28BBE6DF00A482B2 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		66BCDFCE28BBE73A00A482B2 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 		667CE52628BBBA8A0097D935 = {
 			isa = PBXGroup;
 			children = (
+				66A2A6FF296B465A0035A89B /* modules */,
 				660FF29728E0F339000D61E5 /* post.sh */,
 				66C71BDB28BC98B50045159B /* appcast.xml */,
 				66C71BD528BC7C680045159B /* native-twitch--macOS--Info.plist */,
@@ -403,6 +406,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66A2A700296B465A0035A89B /* modules in Resources */,
 				66D3E71028BC3F2300FECA92 /* Assets.xcassets in Resources */,
 				66B3D17E28BC452200552B46 /* submodules in Resources */,
 				66C71BDC28BC98B50045159B /* appcast.xml in Resources */,
@@ -706,7 +710,10 @@
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GENERATE_INFOPLIST_FILE = YES;
-				HEADER_SEARCH_PATHS = /usr/local/include;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include,
+					"$(SRCROOT)/modules/include",
+				);
 				INFOPLIST_FILE = "native-twitch--macOS--Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -714,7 +721,10 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/lib,
+					"$(SRCROOT)/modules/lib",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
 				MARKETING_VERSION = 2.0.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -722,8 +732,9 @@
 					"-L/usr/local/lib",
 					"-I/usr/local/include",
 					"-lcurl",
-					"/usr/local/lib/libjson-c.a",
-					/usr/local/lib/libhelix.a,
+					"$(SRCROOT)/modules/lib/libjson-c.a",
+					"$(SRCROOT)/modules/lib/libcstr.a",
+					"$(SRCROOT)/modules/lib/libhelix.a",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "adam.native-twitch";
 				PRODUCT_NAME = "Native Twitch";
@@ -755,7 +766,10 @@
 				);
 				GCC_OPTIMIZATION_LEVEL = s;
 				GENERATE_INFOPLIST_FILE = YES;
-				HEADER_SEARCH_PATHS = /usr/local/include;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include,
+					"$(SRCROOT)/modules/include",
+				);
 				INFOPLIST_FILE = "native-twitch--macOS--Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -763,15 +777,19 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/lib,
+					"$(SRCROOT)/modules/lib",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
 				MARKETING_VERSION = 2.0.2;
 				OTHER_LDFLAGS = (
 					"-L/usr/local/lib",
 					"-I/usr/local/include",
 					"-lcurl",
-					"/usr/local/lib/libjson-c.a",
-					/usr/local/lib/libhelix.a,
+					"$(SRCROOT)/modules/lib/libjson-c.a",
+					"$(SRCROOT)/modules/lib/libcstr.a",
+					"$(SRCROOT)/modules/lib/libhelix.a",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "adam.native-twitch";
 				PRODUCT_NAME = "Native Twitch";
