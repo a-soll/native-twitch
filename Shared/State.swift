@@ -55,7 +55,7 @@ class StreamSelection: ObservableObject {
 
 class SwiftStream: ObservableObject {
     @Published var stream: UnsafeMutablePointer<TwitchStream>?
-
+    
     func set_selection(stream: UnsafeMutablePointer<TwitchStream>) {
         if self.stream?.pointee == nil {
             self.stream?.deallocate()

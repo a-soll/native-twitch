@@ -17,7 +17,7 @@ class ProfileImage: ObservableObject {
     @Published var view_count = "0"
     @State var fetched = false
     var url: String = ""
-    
+
     init(stream: TwitchStream) {
         image = KFImage(URL(string: url)).placeholder { Image(systemName: "circle.fill")
                 .resizable()
@@ -27,7 +27,7 @@ class ProfileImage: ObservableObject {
         self.stream = stream
         get_url()
     }
-    
+
     func get_url() {
         DispatchQueue.global(qos: .background).async { [self] in
             var user = User()
@@ -48,17 +48,17 @@ struct FollowBarItem: View {
     @ObservedObject var img: ProfileImage
     var stream: StreamItem
     var index: Int
-    var userName: String
-    var gameName: String
-    
+    var game: String
+    var user: String
+
     init(index: Int, stream: inout TwitchStream) {
         self.index = index
         self.stream = StreamItem(stream: stream)
         self.img = ProfileImage(stream: stream)
-        self.userName = CString(str: &stream.user_name.0)
-        self.gameName = CString(str: &stream.game_name.0)
+        self.game = String(Substring(cString: &stream.game_name.0))
+        self.user = String(Substring(cString: &stream.user_name.0))
     }
-    
+
     var body: some View {
         HStack {
             img.image
@@ -68,9 +68,9 @@ struct FollowBarItem: View {
                 .clipShape(Circle())
                 .padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 0))
             VStack(alignment: .leading) {
-                Text(userName)
+                Text(user)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                Text(gameName)
+                Text(game)
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                     .frame(alignment: .leading)
@@ -91,7 +91,7 @@ struct FollowBarItem: View {
             isHover = hover
         })
     }
-    
+
     func abbreviate(index: Int) -> Text {
         var count: Array<CChar> = Array(repeating: 32, count: 15)
         var s = String("\(self.followed.followed![index].viewer_count)")
@@ -106,7 +106,7 @@ struct FollowBarView: View {
     @EnvironmentObject var selectedStream: StreamSelection
     @EnvironmentObject var vidModel: VideoViewModel
     @EnvironmentObject var chat: Chat
-    
+
     var body: some View {
         VStack {
             HStack(alignment: .center) {

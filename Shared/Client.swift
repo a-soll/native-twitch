@@ -11,21 +11,21 @@ class SwiftClient {
     init() {
         Client_init(&self.client, self.accessToken, "gp762nuuoqcoxypju8c569th9wz7q5", self.userId, self.userLogin, self.oAuth)
     }
-    
+
     deinit {
-        client_clear_headers(&self.client)
+        client_clean_up(&self.client)
     }
 }
 
 // for longer life C strings
 class CStringWrapper {
     var cStringPtr: UnsafeMutablePointer<CChar>
-    
+
     init(s: String) {
         let cStringPtr = strdup(s)
         self.cStringPtr = cStringPtr!
     }
-    
+
     deinit {
         free(cStringPtr)
     }
