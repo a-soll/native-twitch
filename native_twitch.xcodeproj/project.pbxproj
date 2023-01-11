@@ -700,7 +700,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2.0.2;
+				CURRENT_PROJECT_VERSION = 2.0.3;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = NRKT859HDW;
 				ENABLE_PREVIEWS = YES;
@@ -726,7 +726,7 @@
 					"$(SRCROOT)/modules/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
-				MARKETING_VERSION = 2.0.2;
+				MARKETING_VERSION = 2.0.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = (
 					"-L/usr/local/lib",
@@ -756,7 +756,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2.0.2;
+				CURRENT_PROJECT_VERSION = 2.0.3;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = NRKT859HDW;
 				ENABLE_PREVIEWS = YES;
@@ -782,7 +782,7 @@
 					"$(SRCROOT)/modules/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
-				MARKETING_VERSION = 2.0.2;
+				MARKETING_VERSION = 2.0.3;
 				OTHER_LDFLAGS = (
 					"-L/usr/local/lib",
 					"-I/usr/local/include",

@@ -4,6 +4,19 @@
         <title>Native Twitch</title>
         <link>https://a-soll.github.io/native-twitch/appcast.xml</link>
         <item>
+            <title>2.0.3</title>
+            <pubDate>Wed, 11 Jan 2023 03:17:33 -0500</pubDate>
+            <sparkle:version>2.0.3</sparkle:version>
+            <sparkle:shortVersionString>2.0.3</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>12.3</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/a-soll/native-twitch/releases/latest/download/Native.Twitch.app.zip" length="3176653" type="application/octet-stream" sparkle:edSignature="VxaGeSKZZzomNguPmu4hP7jJ1eRjOyQwhSqQIWKG33YNYyN4ojxdSkYpb5os1Ly2eFFdptGjduz6/dADUAoYDA=="/>
+            <description><![CDATA[
+                <h2>New features</h2>
+                <p>Resolution picker on video overlay</p>
+                <p>Fullscreen toggle for videos</p>
+            ]]></description>
+        </item>
+        <item>
             <title>2.0.2</title>
             <pubDate>Sun, 11 Dec 2022 21:49:18 -0500</pubDate>
             <sparkle:version>2.0.2</sparkle:version>
@@ -26,136 +39,6 @@
                 <h2>Bug fixes</h2>
                 <p>Fixed issue regarding initial client values that was causing crash on startup</p>
             ]]></description>
-        </item>
-        <item>
-            <title>2.0.0</title>
-            <pubDate>Sun, 04 Dec 2022 06:18:57 -0700</pubDate>
-            <sparkle:version>2.0.0</sparkle:version>
-            <sparkle:shortVersionString>2.0.0</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>12.3</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/a-soll/native-twitch/releases/latest/download/Native.Twitch.app.zip" length="3449465" type="application/octet-stream" sparkle:edSignature="uX1eycbWqmz0mAn4wOvdHqHkohUuf0z+tAKAUV5GAM0w5gBh6tI8Hrh/zonqX/hBqU+xcVdlAcLK97Skx30IDQ=="/>
-            <description><![CDATA[
-                <h2>Bug fixes</h2>
-                <p>Should resolve crash on startup.</p>
-            ]]></description>
-        </item>
-        <item>
-            <title>1.9.8</title>
-            <pubDate>Sat, 03 Dec 2022 19:46:42 -0700</pubDate>
-            <sparkle:version>1.9.8</sparkle:version>
-            <sparkle:shortVersionString>1.9.8</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>12.3</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/a-soll/native-twitch/releases/latest/download/Native.Twitch.app.zip" length="3447985" type="application/octet-stream" sparkle:edSignature="AniENjpk+sGuTKjpXKQ/1SpZe7u2BkeAqwmPO8NI5M/JYBplcMQltl/wowRVRkd/Y0ntsBslTmRUzl4DSeyfAQ=="/>
-            <description><![CDATA[
-                <h2>New features</h2>
-                Supports OAuth to respect turbo/sub to ignore ads
-                <br>- to enable, open twitch.tv in browser, right click and inspect element, and then paste
-                <br>document.cookie.split("; ").find(item=>item.startsWith("auth-token="))?.split("=")[1]</br>
-                into the browser. Copy the returned token into the OAuth field in Native Twitch's settings and restart app.</p>
-                <p>Added "Use Adblock" toggle in settings to choose whether or not to use ttv.lol proxy. if you have Twitch turbo, it's recommended to leave it off and use the above method for OAuth token.</p>
-            ]]></description>
-        </item>
-        <item>
-            <title>1.9.6</title>
-            <pubDate>Thu, 10 Nov 2022 17:05:08 -0500</pubDate>
-            <sparkle:version>1.9.6</sparkle:version>
-            <sparkle:shortVersionString>1.9.6</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>12.3</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/a-soll/native-twitch/releases/latest/download/Native.Twitch.app.zip" length="4182235" type="application/octet-stream" sparkle:edSignature="yiVM7+CSFJEum+Wf5E/Vbr4KC6tgQimJ8qjTfdAIcGe4At5WJOZAFp2cJrLLVimlflBWCprbdz/1z03+8xdBBA=="/>
-            <description><![CDATA[
-                <h2>New features</h2>
-                <p> Now uses TTV.LOL proxy for ad free streams. Also now supports low latency!
-                <h2>Bug fixes</h2>
-                <p>Improved layouts for game/stream view</p>
-                <p>Reverted the "no more flickering of sidebar profile pics" because it prevented the pictures from updating on refresh</p>
-                <p>The video player now prevents the display from sleeping</p>
-            ]]></description>
-        </item>
-        <item>
-            <title>1.9.5</title>
-            <pubDate>Tue, 08 Nov 2022 00:32:58 -0500</pubDate>
-            <sparkle:version>1.9.5</sparkle:version>
-            <sparkle:shortVersionString>1.9.5</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>12.3</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/a-soll/native-twitch/releases/latest/download/Native.Twitch.app.zip" length="4180763" type="application/octet-stream" sparkle:edSignature="I5qNRXnlukAa183HVOsCGefEmmLS53RstyWpophdmC0B0mvE3QIF64xwEIr8qsAgPmXZiECmwiTJtdKIZI0PDw=="/>
-            <description><![CDATA[
-                <h2>New features</h2>
-                <p> Custom video overlay! Videos now show an overlay with profile pic as well as current game and viewers.</p>
-                <p>Search now only works for live channels since there's no support yet for offline channels.</p>
-                <p>Hovering a stream on the sidebar will now show the title in a tooltip</p>
-                <p>New and improved settings window</p>
-                <h2>Bug fixes</h2>
-                <p>Improved stability across the board</p>
-                <p>Streams in the sidebar no longer flicker profile pics when view reloads</p>
-            ]]></description>
-        </item>
-        <item>
-            <title>1.9.0</title>
-            <pubDate>Wed, 12 Oct 2022 16:43:07 -0400</pubDate>
-            <sparkle:version>1.9.0</sparkle:version>
-            <sparkle:shortVersionString>1.9.0</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>12.3</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/a-soll/native-twitch/releases/latest/download/Native.Twitch.app.zip" length="3979706" type="application/octet-stream" sparkle:edSignature="ur86tKJDivhiGXjwuU7Qk2pghFU1F0RZCZ12/closSfC6LbvIf+/oj1tKnnF/4PlTMyUbyVbjfc5x5dNAZ6IDw=="/>
-            <description><![CDATA[
-                <h2>New features</h2>
-                <p> Adds the ability to search by channel name. Searching for games will come soon </p>
-            ]]></description>
-        </item>
-        <item>
-            <title>1.8.8</title>
-            <pubDate>Sun, 25 Sep 2022 16:53:28 -0400</pubDate>
-            <sparkle:version>1.8.8</sparkle:version>
-            <sparkle:shortVersionString>1.8.8</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>12.3</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/a-soll/native-twitch/releases/latest/download/Native.Twitch.app.zip" length="3722797" type="application/octet-stream" sparkle:edSignature="rDmkhFhE6tks1TNdBvPjwlLNOyi9fOCZzL4UcpdANylJDOLJmd2CyB8QAi3ER38gfO6iOKN5IHJKdVOJD9fcBg=="/>
-        </item>
-        <item>
-            <title>1.8.7</title>
-            <pubDate>Sat, 24 Sep 2022 12:41:44 -0400</pubDate>
-            <sparkle:version>1.8.7</sparkle:version>
-            <sparkle:shortVersionString>1.8.7</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>12.3</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/a-soll/native-twitch/releases/latest/download/Native.Twitch.app.zip" length="3722681" type="application/octet-stream" sparkle:edSignature="cjIu8aandJqbzPcIHX38CcIy21VPnygXfE8u+dkMYIAYtkoTA3ujbe//eA04751kPKJue69ecIzHdhremo5yDg=="/>
-        </item>
-        <item>
-            <title>1.8.6</title>
-            <pubDate>Tue, 30 Aug 2022 22:23:24 -0400</pubDate>
-            <sparkle:version>1.8.6</sparkle:version>
-            <sparkle:shortVersionString>1.8.6</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>12.3</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/a-soll/native-twitch/releases/latest/download/Native.Twitch.app.zip" length="3953114" type="application/octet-stream" sparkle:edSignature="UX9ybPe8KNLRWEKYrnkHJhuTbocQezoBf8GxpOQjzmeIS9w6gYBWanIy3lVyz0fVPtdQj/SI2Y7ibonedh6ADw=="/>
-        </item>
-        <item>
-            <title>1.8.5</title>
-            <pubDate>Tue, 30 Aug 2022 20:29:52 -0400</pubDate>
-            <sparkle:version>1.8.5</sparkle:version>
-            <sparkle:shortVersionString>1.8.5</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>12.3</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/a-soll/native-twitch/releases/latest/download/Native.Twitch.app.zip" length="3994162" type="application/octet-stream" sparkle:edSignature="NqyvUMtmJrKAcCMVeYGzghhnnMncWS6imbs2upIfahwdBJBMIEt4CwdPpO+Y5cwDOk50NWmU0yyqjK7uoRMoBA=="/>
-        </item>
-        <item>
-            <title>1.8.3</title>
-            <pubDate>Tue, 30 Aug 2022 18:15:51 -0400</pubDate>
-            <sparkle:version>1.8.3</sparkle:version>
-            <sparkle:shortVersionString>1.8.3</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>12.3</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/a-soll/native-twitch/releases/latest/download/Native.Twitch.app.zip" length="3758423" type="application/octet-stream" sparkle:edSignature="gbS5KhPSabV3I73LDJ9ACdbgdbD1oGhjqrZOKBBFkeGbrGDXakBpk/AzvtBaaXSYed55qdU4LYpHYvNs7p/wBg=="/>
-        </item>
-        <item>
-            <title>1.8.2</title>
-            <pubDate>Tue, 30 Aug 2022 17:09:52 -0400</pubDate>
-            <sparkle:version>1.8.2</sparkle:version>
-            <sparkle:shortVersionString>1.8.2</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>12.3</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/a-soll/native-twitch/releases/latest/download/Native.Twitch.app.zip" length="3979872" type="application/octet-stream" sparkle:edSignature="Zg4kQDUDWQJvWjIOjXkPuguDfv0qTJyRXlezi1rl8YLG1iKRtSDK7inG/QmsN6Xz4VKtkYxYXBi+RGboNEnWAg=="/>
-        </item>
-        <item>
-            <title>1.7</title>
-            <pubDate>Tue, 30 Aug 2022 17:09:52 -0400</pubDate>
-            <sparkle:version>1.7</sparkle:version>
-            <sparkle:shortVersionString>1.7</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>12.3</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/a-soll/native-twitch/releases/latest/download/Native.Twitch.app.zip" length="3758333" type="application/octet-stream" sparkle:edSignature="dtD8qq9ueYzDmA/8DpnTRwiLwTz3oFtQ5ucfc/0TGI0qr5fq7ifXofkcjPDyW9ems88VfAvKgSZzuYfSGGCwBA=="/>
         </item>
     </channel>
 </rss>

@@ -5,3 +5,4 @@ secret/
 *.zip
 notes.html
 modules
+.DS_Store
