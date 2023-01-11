@@ -48,6 +48,7 @@ struct NSVideoView: NSViewRepresentable {
         playerView.controlsStyle = .floating
         playerView.player = AVPlayer(url: vidModel.url!)
         playerView.player?.preventsDisplaySleepDuringVideoPlayback = true
+        playerView.showsFullScreenToggleButton = true
         self.playerView = playerView
         playerView.player?.play()
         return playerView
@@ -58,9 +59,10 @@ struct NSVideoView: NSViewRepresentable {
     }
 }
 
-struct OverlayView: View {
+struct StreamTitleView: View {
     @ObservedObject var img: ProfImage
     @State var stream: StreamItem
+    @EnvironmentObject var vidModel: VideoViewModel
     
     var body: some View {
         HStack {
@@ -86,10 +88,105 @@ struct OverlayView: View {
     }
 }
 
+struct ResolutionItem: View {
+    @State var res: Resolution
+    @State var isHover = false
+    @EnvironmentObject var vidModel: VideoViewModel
+    @Binding var toolbarLock: Bool
+    
+    var body: some View {
+        resText(resolution: &res)
+            .frame(maxWidth: .infinity)
+            .background(
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(isHover ? .gray.opacity(0.1) : .clear)
+                    .frame(width: 120, height: 30)
+            )
+            .onHover(perform: { hover in
+                isHover = hover
+            })
+            .onTapGesture {
+                vidModel.url = URL(string: CString(str: &res.link.0))
+            }
+    }
+    
+    func resText(resolution: inout Resolution) -> some View {
+        return Text(String(Substring(cString: &resolution.name.0)))
+    }
+}
+
+struct Toolbar: View {
+    @EnvironmentObject var vidModel: VideoViewModel
+    @State var showPopup = false
+    @Binding var toolbarLock: Bool
+    @State var curResolution = ""
+    
+    var body: some View {
+        VStack {
+            HStack {
+                Spacer()
+                Button(action: togglePopup, label: {
+                    Image(systemName: "gearshape")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 25, height: 25)
+                })
+                .buttonStyle(.plain)
+                .popover(isPresented: $showPopup, attachmentAnchor: .point(.top), arrowEdge: .top) {
+                    VStack {
+                        ResolutionItem(res: vidModel.vid.resolution_list.0, toolbarLock: $toolbarLock)
+                            .padding(EdgeInsets(top: 15, leading: 20, bottom: 5, trailing: 20))
+                            .frame(maxWidth: .infinity)
+                        ResolutionItem(res: vidModel.vid.resolution_list.1, toolbarLock: $toolbarLock)
+                            .padding(EdgeInsets(top: 0, leading: 5, bottom: 5, trailing: 5))
+                        ResolutionItem(res: vidModel.vid.resolution_list.2, toolbarLock: $toolbarLock)
+                            .padding(EdgeInsets(top: 0, leading: 5, bottom: 5, trailing: 5))
+                        ResolutionItem(res: vidModel.vid.resolution_list.3, toolbarLock: $toolbarLock)
+                            .padding(EdgeInsets(top: 0, leading: 5, bottom: 15, trailing: 5))
+                    }.onAppear(perform: {
+                        toolbarLock = true
+                    })
+                    .onDisappear(perform: {
+                        toolbarLock = false
+                    })
+                }.onHover(perform: {_ in
+                    toolbarLock = true
+                })
+            }
+            Spacer()
+                .frame(height: 15)
+        }
+    }
+    
+    func togglePopup() {
+        self.showPopup = true
+    }
+}
+
+struct OverlayView: View {
+    @ObservedObject var img: ProfImage
+    @State var stream: StreamItem
+    @Binding var toolbarLock: Bool
+    var body: some View {
+        VStack {
+            HStack {
+                StreamTitleView(img: img, stream: stream)
+                Spacer()
+            }
+            Spacer()
+            HStack {
+                Spacer()
+                Toolbar(toolbarLock: $toolbarLock)
+            }
+        }
+    }
+}
+
 struct PlayerView: View {
     var client = SwiftClient()
-    @StateObject var helper = Helper(hide: true)
+    @StateObject var helper = Helper(hide: true, toolbarLock: false)
     @EnvironmentObject var streamSelection: StreamSelection
+    @EnvironmentObject var vidModel: VideoViewModel
     @State var firstLoad = true
     @ObservedObject var img: ProfImage
     @State var hideControlTimer: Timer?
@@ -105,7 +202,7 @@ struct PlayerView: View {
                     Spacer().frame(height: 10)
                     HStack {
                         Spacer().frame(width: 10)
-                        OverlayView(img: img, stream: stream)
+                        OverlayView(img: img, stream: stream, toolbarLock: $helper.toolbarLock)
                         Spacer()
                     }
                     Spacer()
@@ -137,7 +234,7 @@ struct PlayerView: View {
             createTimer()
             firstLoad = false
         } else {
-            if (!firstLoad) {
+            if (!firstLoad && !helper.toolbarLock) {
                 helper.hide = true
             }
         }
@@ -148,17 +245,21 @@ struct PlayerView: View {
         hideControlTimer?.invalidate()
         helper.hide = false
         hideControlTimer = Timer.scheduledTimer(withTimeInterval: TimeInterval(3), repeats: false) { _ in
-            helper.hide = true
+            if (!helper.toolbarLock) {
+                helper.hide = true
+            }
         }
     }
 }
 
 class Helper: ObservableObject {
     @Published var hide: Bool
+    @Published var toolbarLock: Bool
     var isOverContent = false
     
-    init(hide: Bool) {
+    init(hide: Bool, toolbarLock: Bool) {
         self.hide = hide
+        self.toolbarLock = toolbarLock
     }
 }
 
