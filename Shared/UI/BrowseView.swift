@@ -13,7 +13,7 @@ struct BrowseItem: View {
     @State var animate = false
     
     init(game: UnsafeMutablePointer<Game>) {
-        self.url = URL(string: CString(str: &game.pointee.box_art_url.0)) ?? URL(string: "")!
+        self.url = URL(string: CString(str: &game.pointee.box_art_url.0)) ?? URL(string: "https://static-cdn.jtvnw.net/ttv-static/404_boxart.jpg")!
         self.title = CString(str: &game.pointee.name.0)
     }
     
@@ -44,11 +44,11 @@ struct CategoryView: View {
     var body: some View {
         ScrollView {
             LazyVGrid(columns: gridItemLayout, spacing: 30) {
-                ForEach(0..<browse.items, id: \.self) { i in
-                    var game = browse.gameList![i]
+                ForEach(0..<Int(browse.gameList.len), id: \.self) { i in
+                    var game = browse.gameList.games![i]
                     BrowseItem(game: &game)
                         .onAppear(perform: {
-                            if i == browse.items - 1 {
+                            if i == browse.gameList.len - 1 {
                                 browse.fetch()
                             }
                         })
@@ -158,7 +158,7 @@ struct BrowseView: View {
     
     var body: some View {
         if gameSelected {
-            GameStreamView(game: &browse.gameList![browse.index])
+            GameStreamView(game: &browse.gameList.games![browse.index])
         } else {
             CategoryView(gameSelected: $gameSelected).environmentObject(self.browse)
         }

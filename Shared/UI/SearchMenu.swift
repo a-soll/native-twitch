@@ -8,6 +8,11 @@
 import SwiftUI
 import Kingfisher
 
+class SearchedGameImage: ObservableObject {
+    var id = UUID()
+    var client = SwiftClient()
+}
+
 class SearchedProfileImage: ObservableObject {
     var id = UUID()
     var client = SwiftClient()
@@ -16,7 +21,7 @@ class SearchedProfileImage: ObservableObject {
     @Published var view_count = "0"
     @State var fetched = false
     var url: String = ""
-    
+
     init(channel: UnsafeMutablePointer<SearchedChannel>) {
         image = KFImage(URL(string: url)).placeholder { Image(systemName: "circle.fill").resizable().frame(width: 30, height: 30) }
         self.channel = channel
@@ -24,7 +29,7 @@ class SearchedProfileImage: ObservableObject {
             get_url()
         }
     }
-    
+
     func get_url() {
         DispatchQueue.global(qos: .background).async { [self] in
             var user = User()
@@ -38,17 +43,26 @@ class SearchedProfileImage: ObservableObject {
     }
 }
 
+struct SearchGame: View {
+    let name: String
+    @ObservedObject var image: SearchedGameImage
+
+    var body: some View {
+        Text("todo")
+    }
+}
+
 struct SearchItem: View {
     let login: String
     var is_live: Bool
     @ObservedObject var image: SearchedProfileImage
-    
+
     init(channel: UnsafeMutablePointer<SearchedChannel>) {
         self.login = CString(str: &channel.pointee.broadcaster_login.0)
         image = SearchedProfileImage(channel: channel)
         self.is_live = channel.pointee.is_live
     }
-    
+
     var body: some View {
         HStack {
             image.image
@@ -69,15 +83,15 @@ class Search: ObservableObject {
     @Published var count: Int32 = 0
     var paginator = Paginator()
     var client = SwiftClient()
-    
+
     deinit {
         self.chanResults?.deallocate()
     }
-    
+
     func runSearch(keyword: String) {
         count += search_channels(&client.client, keyword, &chanResults, &paginator, count, true)
     }
-    
+
     func clearSearch() {
         self.chanResults?.deallocate()
         self.chanResults = UnsafeMutablePointer<SearchedChannel>?.init(nilLiteral: ())
@@ -90,7 +104,7 @@ struct SearchMenu: View {
     @State var showPopup = false
     @State private var searchText = ""
     @ObservedObject var search = Search()
-    
+
     var body: some View {
         Text("")
             .searchable(text: $searchText, prompt: "Search for channel, user, game, etc")
@@ -101,7 +115,7 @@ struct SearchMenu: View {
                 PopView(search: self.search, showPopup: $showPopup, searchText: $searchText)
             }
     }
-    
+
     func runSearch() {
         showPopup = true
         search.clearSearch()
@@ -117,13 +131,13 @@ struct PopView: View {
     var client = SwiftClient()
     @Binding var showPopup: Bool
     @Binding var searchText: String
-    
+
     init(search: Search, showPopup: Binding<Bool>, searchText: Binding<String>) {
         self.search = search
         self._showPopup = showPopup
         self._searchText = searchText
     }
-    
+
     var body: some View {
         List(0..<Int(search.count), id: \.self) {i in
             SearchItem(channel: &search.chanResults![i])

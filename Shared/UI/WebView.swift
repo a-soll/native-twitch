@@ -13,14 +13,14 @@ struct WebView: NSViewRepresentable {
         webView = WKWebView()
         webView = loadWebViewWithCustomJavaScript()
     }
-    
+
     func makeNSView(context: Context) -> WKWebView {
         let urlRequest = URLRequest(url: url)
         self.webView.configuration.preferences.javaScriptCanOpenWindowsAutomatically = true
         webView.load(urlRequest)
         return webView
     }
-    
+
     func updateNSView(_ webView: WKWebView, context: Context) {
             let urlRequest = URLRequest(url: url)
             webView.load(urlRequest)

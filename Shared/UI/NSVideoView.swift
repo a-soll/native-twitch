@@ -11,22 +11,22 @@ import AVKit
 
 class ProfImage: ObservableObject {
     var id = UUID()
-    var client = SwiftClient()
     @Published var image: KFImage
     @State var fetched = false
     @State var stream: TwitchStream
     var url: String = ""
-    
+
     init(channel: TwitchStream) {
         image = KFImage(URL(string: url)).placeholder { Image(systemName: "circle.fill").resizable().frame(width: 75, height: 75)
         }
         self.stream = channel
         get_url()
     }
-    
+
     func get_url() {
         DispatchQueue.global(qos: .background).async { [self] in
             var user = User()
+            let client = SwiftClient()
             get_user_by_login(&client.client, &user, &stream.user_login.0)
             DispatchQueue.main.async { [self] in
                 url = CString(str: &user.profile_image_url.0)
@@ -183,7 +183,6 @@ struct OverlayView: View {
 }
 
 struct PlayerView: View {
-    var client = SwiftClient()
     @StateObject var helper = Helper(hide: true, toolbarLock: false)
     @EnvironmentObject var streamSelection: StreamSelection
     @EnvironmentObject var vidModel: VideoViewModel
@@ -224,6 +223,7 @@ struct PlayerView: View {
             NSEvent.removeMonitor(monitor as Any)
         })
         .onReceive(refreshTimer) { _ in
+            let client = SwiftClient()
             get_stream_by_user_login(&client.client, &self.stream.stream, &self.stream.stream.user_login.0)
         }
     }

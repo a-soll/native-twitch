@@ -59,7 +59,7 @@ class AuthItem: ObservableObject {
         if (token.isEmpty) {
             token = "tmp"
         }
-        var client = SwiftClient()
+        let client = SwiftClient()
         self.isAuthed = validate_token(&client.client)
 
         if self.isAuthed {

@@ -711,8 +711,8 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
-					/usr/local/include,
 					"$(SRCROOT)/modules/include",
+					/usr/local/include,
 				);
 				INFOPLIST_FILE = "native-twitch--macOS--Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
@@ -722,19 +722,21 @@
 					"@executable_path/../Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = (
-					/usr/local/lib,
 					"$(SRCROOT)/modules/lib",
+					/usr/local/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
 				MARKETING_VERSION = 2.0.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = (
-					"-L/usr/local/lib",
-					"-I/usr/local/include",
-					"-lcurl",
+					"-L$(SRCROOT)/modules/lib",
+					"-I$(SRCROOT)/modules/include",
 					"$(SRCROOT)/modules/lib/libjson-c.a",
 					"$(SRCROOT)/modules/lib/libcstr.a",
 					"$(SRCROOT)/modules/lib/libhelix.a",
+					"-L/usr/local/lib",
+					"-I/usr/local/include",
+					"-lcurl",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "adam.native-twitch";
 				PRODUCT_NAME = "Native Twitch";
@@ -767,8 +769,8 @@
 				GCC_OPTIMIZATION_LEVEL = s;
 				GENERATE_INFOPLIST_FILE = YES;
 				HEADER_SEARCH_PATHS = (
-					/usr/local/include,
 					"$(SRCROOT)/modules/include",
+					/usr/local/include,
 				);
 				INFOPLIST_FILE = "native-twitch--macOS--Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
@@ -778,18 +780,20 @@
 					"@executable_path/../Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = (
-					/usr/local/lib,
 					"$(SRCROOT)/modules/lib",
+					/usr/local/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
 				MARKETING_VERSION = 2.0.3;
 				OTHER_LDFLAGS = (
-					"-L/usr/local/lib",
-					"-I/usr/local/include",
-					"-lcurl",
+					"-L$(SRCROOT)/modules/lib",
+					"-I$(SRCROOT)/modules/include",
 					"$(SRCROOT)/modules/lib/libjson-c.a",
 					"$(SRCROOT)/modules/lib/libcstr.a",
 					"$(SRCROOT)/modules/lib/libhelix.a",
+					"-L/usr/local/lib",
+					"-I/usr/local/include",
+					"-lcurl",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "adam.native-twitch";
 				PRODUCT_NAME = "Native Twitch";
