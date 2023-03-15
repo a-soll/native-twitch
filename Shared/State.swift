@@ -25,13 +25,10 @@ class VideoViewModel: ObservableObject {
 }
 
 class GameSelection: ObservableObject {
-    @Published var game: UnsafeMutablePointer<Game>?
+    @Published var game = Game()
     var i: Int?
     
-    func set_selection(game: UnsafeMutablePointer<Game>, i: Int) {
-        if self.game?.pointee == nil {
-            self.game?.deallocate()
-        }
+    func set_selection(game: Game, i: Int) {
         self.game = game
         self.i = i
     }

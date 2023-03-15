@@ -12,6 +12,7 @@ struct ContentView: View {
     @StateObject var vidModel = VideoViewModel()
     @State var pop = true
     @State var gameSelected = false
+    @StateObject var selectedGame = GameSelection()
     @State private var searchPos: CGPoint = .zero
     @State private var searchSize: CGSize = .zero
     @StateObject var chat = Chat()
@@ -52,12 +53,13 @@ struct ContentView: View {
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
             }// ToolbarItemGroup end
             ToolbarItem(content: {
-                SearchMenu()
+                SearchMenu(gameSelected: $gameSelected)
             })
         }
-            .environmentObject(self.selectedStream)
-            .environmentObject(self.vidModel)
-            .environmentObject(self.chat)
+        .environmentObject(self.selectedStream)
+        .environmentObject(self.vidModel)
+        .environmentObject(self.chat)
+        .environmentObject(self.selectedGame)
     }// end body
 
     private func toggleVidPlaying() {

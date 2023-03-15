@@ -11,12 +11,12 @@ struct BrowseItem: View {
     var url: URL
     var title: String
     @State var animate = false
-    
+
     init(game: UnsafeMutablePointer<Game>) {
         self.url = URL(string: CString(str: &game.pointee.box_art_url.0)) ?? URL(string: "https://static-cdn.jtvnw.net/ttv-static/404_boxart.jpg")!
         self.title = CString(str: &game.pointee.name.0)
     }
-    
+
     var body: some View {
         VStack {
             GameImage(url: url).image.cornerRadius(12)
@@ -36,11 +36,11 @@ struct CategoryView: View {
     @EnvironmentObject var gameSelection: GameSelection
     @EnvironmentObject var browse: Browse
     var gridItemLayout: [GridItem] = Array(repeating: .init(.adaptive(minimum: 200)), count: 3)
-    
+
     init(gameSelected: Binding<Bool>) {
         self._gameSelected = gameSelected
     }
-    
+
     var body: some View {
         ScrollView {
             LazyVGrid(columns: gridItemLayout, spacing: 30) {
@@ -55,6 +55,7 @@ struct CategoryView: View {
                         .onTapGesture {
                             self.browse.index = i
                             gameSelected = true
+                            gameSelection.set_selection(game: game, i: browse.index)
                         }
                 }
             }
@@ -75,7 +76,7 @@ struct GameStreamItem: View {
     var client = SwiftClient()
     var thumbnail: ThumbailImage
     @State var animate = false
-    
+
     init(stream: inout TwitchStream) {
         self.stream = stream
         self.userName = CString(str: &stream.user_name.0)
@@ -85,7 +86,7 @@ struct GameStreamItem: View {
         self.thumbnail = ThumbailImage(url: URL(string: self.url)!)
         self.userLogin = CString(str: &stream.user_login.0)
     }
-    
+
     var body: some View {
         VStack {
             ZStack {
@@ -127,15 +128,26 @@ struct GameStreamItem: View {
 }
 
 struct GameStreamView: View {
+    @EnvironmentObject var gameSelection: GameSelection
     var game: UnsafeMutablePointer<Game>?
-    @ObservedObject var gameStreams: GameStreams
+    @ObservedObject var gameStreams = GameStreams()
     var gridItemLayout: [GridItem] = Array(repeating: .init(.adaptive(minimum: 400)), count: 2)
-    
+    @State var first_fetch = true
+    @State var foundStreams = true
+
     init(game: UnsafeMutablePointer<Game>) {
-        self.game = game
-        self.gameStreams = GameStreams(game: self.game!)
     }
-    
+
+    func getStreams() {
+        self.gameStreams.iterator = paginator_init()
+        self.gameStreams.setGame(game: gameSelection.game)
+        if gameStreams.items == 0 {
+            foundStreams = false
+        } else {
+            foundStreams = true
+        }
+    }
+
     var body: some View {
         ScrollView {
             LazyVGrid(columns: gridItemLayout, spacing: 30) {
@@ -149,18 +161,34 @@ struct GameStreamView: View {
                 }
             }
         }
+        .onAppear(perform: {
+            if first_fetch {
+                getStreams()
+                first_fetch = false
+            }
+        })
+        .onReceive(gameSelection.$game) { flag in
+            if first_fetch {
+                self.gameStreams.items = 0
+                getStreams()
+            }
+        }
     }
 }
 
 struct BrowseView: View {
     @Binding var gameSelected: Bool
     @StateObject var browse = Browse()
-    
+    @EnvironmentObject var selectedGame: GameSelection
+
     var body: some View {
         if gameSelected {
             GameStreamView(game: &browse.gameList.games![browse.index])
+                .environmentObject(self.selectedGame)
         } else {
-            CategoryView(gameSelected: $gameSelected).environmentObject(self.browse)
+            CategoryView(gameSelected: $gameSelected)
+                .environmentObject(self.browse)
+                .environmentObject(self.selectedGame)
         }
     }
 }
