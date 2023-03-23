@@ -4,6 +4,23 @@
         <title>Native Twitch</title>
         <link>https://a-soll.github.io/native-twitch/appcast.xml</link>
         <item>
+            <title>2.0.4</title>
+            <pubDate>Thu, 23 Mar 2023 14:33:00 -0400</pubDate>
+            <sparkle:version>2.0.4</sparkle:version>
+            <sparkle:shortVersionString>2.0.4</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>12.3</sparkle:minimumSystemVersion>
+            <enclosure url="https://github.com/a-soll/native-twitch/releases/latest/download/Native.Twitch.app.zip" length="3210649" type="application/octet-stream" sparkle:edSignature="it6TVZhTTzZSjZ7Y8Koi8aqdSzUHKFQvwyPhcAv4QaeId6jzb7aikXqe2U5hDJmUySwyoIjbIc7VtMJzzRljDQ=="/>
+            <description><![CDATA[
+                <h2>New features</h2>
+                <div>Can now search for games in the search menu</div>
+                <h2>Known issues</h2>
+                <div>
+                    Clicking on a game in the search results will return no streams if you're already looking at streams for a game.
+                    This will be fixed in a future release.
+                </div>
+            ]]></description>
+        </item>
+        <item>
             <title>2.0.3</title>
             <pubDate>Wed, 11 Jan 2023 03:17:33 -0500</pubDate>
             <sparkle:version>2.0.3</sparkle:version>
@@ -26,18 +43,6 @@
             <description><![CDATA[
                 <h2>Bug fixes</h2>
                 <p>Setting initial value to start up string that was missed and causing crash on startup.</p>
-            ]]></description>
-        </item>
-        <item>
-            <title>2.0.1</title>
-            <pubDate>Thu, 08 Dec 2022 13:39:28 -0500</pubDate>
-            <sparkle:version>2.0.1</sparkle:version>
-            <sparkle:shortVersionString>2.0.1</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>12.3</sparkle:minimumSystemVersion>
-            <enclosure url="https://github.com/a-soll/native-twitch/releases/latest/download/Native.Twitch.app.zip" length="3453320" type="application/octet-stream" sparkle:edSignature="Bxg5BexJTvApPbx6I1dgzAC0PqyDfbAtz3YqsQHzf0UVMD1LmB4ABzXlRWtF3C9ImScVGDJqUSzbbvDu1QdmDw=="/>
-            <description><![CDATA[
-                <h2>Bug fixes</h2>
-                <p>Fixed issue regarding initial client values that was causing crash on startup</p>
             ]]></description>
         </item>
     </channel>
