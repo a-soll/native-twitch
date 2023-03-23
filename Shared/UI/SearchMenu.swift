@@ -110,29 +110,26 @@ struct SearchGame: View {
 
 struct SearchGameList: View {
     @EnvironmentObject var gameSelection: GameSelection
-    @Binding var query: String
     var client = SwiftClient()
-    var gameList = GameList()
+    var search: Search
     @State var gameLimit = limitIncriment
     @Binding var showPopup: Bool
     @Binding var gameSelected: Bool
 
-    init(query: Binding<String>, client: SwiftClient, showPopup: Binding<Bool>, gameSelected: Binding<Bool>) {
-        self._query = query
-        GameList_init(&self.gameList, _query.wrappedValue)
+    init(search: Search, client: SwiftClient, showPopup: Binding<Bool>, gameSelected: Binding<Bool>) {
+        self.search = search
         self.client = client
         self._showPopup = showPopup
         self._gameSelected = gameSelected
-        search_games(&self.client.client, &self.gameList)
-        if gameLimit > gameList.len {
-            gameLimit = Int(gameList.len)
+        if gameLimit > search.gameResults.len {
+            gameLimit = Int(search.gameResults.len)
         }
     }
 
     var body: some View {
-        if gameList.len > 0 {
+        if search.gameResults.len > 0 {
             ForEach(0..<Int(gameLimit), id: \.self) { i in
-                var game = gameList.games[i]
+                var game = search.gameResults.games[i]
                 SearchGame(game: &game, showPopup: $showPopup, gameSelected: $gameSelected)
                 if (i == self.gameLimit - 1) {
                     Text("Show more...")
@@ -149,8 +146,8 @@ struct SearchGameList: View {
     }
 
     func showMore() {
-        if gameLimit + limitIncriment > gameList.len {
-            self.gameLimit = Int(gameList.len)
+        if gameLimit + limitIncriment > search.gameResults.len {
+            self.gameLimit = Int(search.gameResults.len)
         } else {
             gameLimit += limitIncriment
         }
@@ -209,6 +206,7 @@ class Search: ObservableObject {
     }
 
     func runSearch(keyword: String) {
+        GameList_deinit(&self.gameResults)
         GameList_init(&gameResults, keyword)
         chanCount += search_channels(&client.client, keyword, &chanResults, &paginator, chanCount, true)
         search_games(&self.client.client, &self.gameResults)
@@ -341,7 +339,7 @@ struct PopView: View {
                 ChannelList(client: self.client, search: self.search, showPopup: $showPopup, searchText: $searchText)
             }
             Section(header: Text("Games")) {
-                SearchGameList(query: $searchText, client: self.client, showPopup: $showPopup, gameSelected: $gameSelected)
+                SearchGameList(search: self.search, client: self.client, showPopup: $showPopup, gameSelected: $gameSelected)
             }
         }
     }
