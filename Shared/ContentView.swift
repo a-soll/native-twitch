@@ -17,6 +17,7 @@ struct ContentView: View {
     @State private var searchSize: CGSize = .zero
     @StateObject var chat = Chat()
     @StateObject var selectedStream = StreamSelection()
+    var hideChat = HideChat()
 
     var body: some View {
         NavigationView {
@@ -26,7 +27,7 @@ struct ContentView: View {
                 HStack(spacing:0) {
                     PlayerView(img: ProfImage(channel: selectedStream.stream), stream: StreamItem(stream: selectedStream.stream))
                     ChatView().frame(minWidth: 350, maxWidth: 350)
-                }
+                }.environmentObject(self.hideChat)
             }
             else {
                 BrowseView(gameSelected: $gameSelected)

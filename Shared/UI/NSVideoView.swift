@@ -192,6 +192,7 @@ struct PlayerView: View {
     @State var refreshTimer = Timer.publish(every: 45, on: .main, in: .common).autoconnect()
     @ObservedObject var stream: StreamItem
     @State var monitor: Any?
+    @EnvironmentObject var hideChat: HideChat
     
     var body: some View {
         ZStack {
@@ -207,7 +208,14 @@ struct PlayerView: View {
                     Spacer()
                 }
             }
-        }.onAppear(perform: {
+        }
+        .toolbar {
+            ToolbarItem(content: {
+                let hideText = hideChat.hide ? "Show" : "Hide"
+                Button("\(hideText) chat") {hideChat.hide.toggle()}
+            })
+        }
+        .onAppear(perform: {
             if (firstLoad) {
                 helper.hide = false
             }

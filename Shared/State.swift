@@ -83,3 +83,7 @@ class FollowedChannels: ObservableObject {
         count = get_followed_streams(&client.client, &followed, 0)
     }
 }
+
+class HideChat: ObservableObject {
+    @Published var hide = false
+}

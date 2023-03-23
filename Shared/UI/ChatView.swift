@@ -9,8 +9,11 @@ import SwiftUI
 
 struct ChatView: View {
     @EnvironmentObject var chat: Chat
+    @EnvironmentObject var hideChat: HideChat
 
     var body: some View {
-        WebView(channel: chat.channel)
+        if (hideChat.hide == false) {
+            WebView(channel: chat.channel)
+        }
     }
 }
