@@ -35,7 +35,7 @@ struct CategoryView: View {
     @Binding var gameSelected: Bool
     @EnvironmentObject var gameSelection: GameSelection
     @EnvironmentObject var browse: Browse
-    var gridItemLayout: [GridItem] = Array(repeating: .init(.adaptive(minimum: 200)), count: 3)
+    var gridItemLayout = [GridItem(.adaptive(minimum: 250))]
 
     init(gameSelected: Binding<Bool>) {
         self._gameSelected = gameSelected
@@ -43,7 +43,7 @@ struct CategoryView: View {
 
     var body: some View {
         ScrollView {
-            LazyVGrid(columns: gridItemLayout, spacing: 30) {
+            LazyVGrid(columns: gridItemLayout, spacing: 10) {
                 ForEach(0..<Int(browse.gameList.len), id: \.self) { i in
                     var game = browse.gameList.games![i]
                     BrowseItem(game: &game)
@@ -131,7 +131,7 @@ struct GameStreamView: View {
     @EnvironmentObject var gameSelection: GameSelection
     var game: UnsafeMutablePointer<Game>?
     @ObservedObject var gameStreams = GameStreams()
-    var gridItemLayout: [GridItem] = Array(repeating: .init(.adaptive(minimum: 400)), count: 2)
+    var gridItemLayout = [GridItem(.adaptive(minimum: 380))]
     @State var first_fetch = true
     @State var foundStreams = true
 
@@ -150,7 +150,7 @@ struct GameStreamView: View {
 
     var body: some View {
         ScrollView {
-            LazyVGrid(columns: gridItemLayout, spacing: 30) {
+            LazyVGrid(columns: gridItemLayout, spacing: 10) {
                 ForEach(0..<gameStreams.items, id: \.self) { i in
                     GameStreamItem(stream: &gameStreams.streams![i])
                         .onAppear(perform: {
