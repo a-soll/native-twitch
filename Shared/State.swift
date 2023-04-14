@@ -13,7 +13,9 @@ func fromCString(str: UnsafePointer<CChar>) -> NSString {
 }
 
 func CString(str: UnsafeMutablePointer<CChar>) -> String {
-    return (NSString(cString: str, encoding: NSUTF8StringEncoding) ?? (NSString(cString: str, encoding: NSUnicodeStringEncoding)!)) as String
+    let s: String
+    s = (NSString(cString: str, encoding: NSUTF8StringEncoding) ?? (NSString(cString: str, encoding: NSUnicodeStringEncoding)!)) as String
+    return s
 }
 
 class VideoViewModel: ObservableObject {
@@ -27,10 +29,15 @@ class VideoViewModel: ObservableObject {
 class GameSelection: ObservableObject {
     @Published var game = Game()
     var i: Int?
+    var client = SwiftClient()
     
     func set_selection(game: Game, i: Int) {
         self.game = game
         self.i = i
+    }
+
+    func set_selection_by_name(game: UnsafeMutablePointer<CChar>) {
+        get_game_by_name(&client.client, game, &self.game)
     }
 }
 

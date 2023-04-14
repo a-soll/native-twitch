@@ -63,6 +63,7 @@ struct StreamTitleView: View {
     @ObservedObject var img: ProfImage
     @State var stream: StreamItem
     @EnvironmentObject var vidModel: VideoViewModel
+    @EnvironmentObject var gameSelection: GameSelection
     
     var body: some View {
         HStack {
@@ -76,11 +77,16 @@ struct StreamTitleView: View {
                     .font(.largeTitle)
                     .font(.system(size: 38))
                 Text(CString(str: &stream.stream.title.0))
-                Text("Playing ") +
-                Text(CString(str: &stream.stream.game_name.0)) +
-                Text(" for ") +
-                Text("\(stream.stream.viewer_count)") +
-                Text(" viewers")
+                HStack(spacing: 0) {
+                    Text("Playing ")
+                    Text(CString(str: &stream.stream.game_name.0)).underline()
+                        .onTapGesture {
+                            gameSelection.set_selection_by_name(game: &stream.stream.game_name.0)
+                        }
+                    Text(" for ")
+                    Text("\(stream.stream.viewer_count)")
+                    Text(" viewers")
+                }
             }        .padding(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
                 .background(.black.opacity(0.7)).cornerRadius(15)
         }
