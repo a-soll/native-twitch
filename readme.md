@@ -1,3 +1,5 @@
+# The new version of this app is available for public testing via https://testflight.apple.com/join/uJqZ5xW7
+
 # ⚠️ This app is no longer maintained ⚠️
 This app was used as a learning experience on working with SwiftUI and C interop. I have since been working on a "2.0" version of this app using C++ instead of C.
 There are quite a few design choices made on this app that require a redesign to fully address, which is being done in the newer version. It is closed source
