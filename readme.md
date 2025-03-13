@@ -1,4 +1,4 @@
-# The new version of this app is available for [public testing](https://testflight.apple.com/join/uJqZ5xW7). Also feel free to [join the Discord!](https://discord.gg/55T4AKJKt3)
+# The new version of this app is available for [download](https://apps.apple.com/us/app/kulve/id6476389316?mt=12) on the Mac App Store. Also feel free to [join the Discord!](https://discord.gg/55T4AKJKt3)
 
 # ⚠️ This app is no longer maintained ⚠️
 This app was used as a learning experience on working with SwiftUI and C interop. I have since been working on a "2.0" version of this app using C++ instead of C.
